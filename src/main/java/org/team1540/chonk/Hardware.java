@@ -25,5 +25,10 @@ public class Hardware {
         driveLeftB = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
         driveLeftC = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
 
+        Hardware.driveRightB.follow(Hardware.driveRightA);
+        Hardware.driveRightC.follow(Hardware.driveRightA);
+
+        Hardware.driveLeftB.follow(Hardware.driveLeftA);
+        Hardware.driveLeftC.follow(Hardware.driveLeftA);
     }
 }
