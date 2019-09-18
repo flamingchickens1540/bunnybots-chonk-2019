@@ -23,19 +23,19 @@ public class IO {
     private static Button driverLeftJoystickButton = new JoystickButton(driver, 9);
 
     //copilot
-    public static XboxController copilot = new XboxController(0);
+    public static XboxController copilot = new XboxController(1);
 
-    private static Button copilotAButton = new JoystickButton(driver, 1);
-    private static Button copilotBButton = new JoystickButton(driver, 2);
-    private static Button copilotButton = new JoystickButton(driver, 3);
-    private static Button copilotYButton = new JoystickButton(driver, 4);
+    private static Button copilotAButton = new JoystickButton(copilot, 1);
+    private static Button copilotBButton = new JoystickButton(copilot, 2);
+    private static Button copilotButton = new JoystickButton(copilot, 3);
+    private static Button copilotYButton = new JoystickButton(copilot, 4);
 
-    private static Button copilotRB = new JoystickButton(driver, 6);
-    private static Button copilotLB = new JoystickButton(driver, 5);
+    private static Button copilotRB = new JoystickButton(copilot, 6);
+    private static Button copilotLB = new JoystickButton(copilot, 5);
 
-    private static Button copilotBackButton = new JoystickButton(driver, 7);
-    private static Button copilotStartButton = new JoystickButton(driver, 8);
+    private static Button copilotBackButton = new JoystickButton(copilot, 7);
+    private static Button copilotStartButton = new JoystickButton(copilot, 8);
 
-    private static Button copilotRightJoystickButton = new JoystickButton(driver, 10);
-    private static Button copilotLeftJoystickButton = new JoystickButton(driver, 9);
+    private static Button copilotRightJoystickButton = new JoystickButton(copilot, 10);
+    private static Button copilotLeftJoystickButton = new JoystickButton(copilot, 9);
 }
