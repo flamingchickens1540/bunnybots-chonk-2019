@@ -2,6 +2,7 @@ package org.team1540.chonk.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.team1540.chonk.Robot;
+import org.team1540.chonk.Tuning;
 
 public class MoveArmToPosition extends Command {
 
@@ -19,6 +20,6 @@ public class MoveArmToPosition extends Command {
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return (Math.abs(Robot.arm.getPosition() - position) <= Tuning.ARM_POSITION_TOLERANCE);
     }
 }

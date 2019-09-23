@@ -17,7 +17,7 @@ public class Arm extends Subsystem {
     public void setPosition(double position) {
         armA.set(ControlMode.Position, position * Tuning.ARM_TICKS_PER_DEGREE);
     }
-    
+
     public double getPosition() {
         return Hardware.armA.getSelectedSensorPosition() / Tuning.ARM_TICKS_PER_DEGREE;
     }
