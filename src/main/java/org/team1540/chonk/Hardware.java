@@ -2,18 +2,20 @@ package org.team1540.chonk;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
+import org.team1540.rooster.wrappers.ChickenTalon;
+import org.team1540.rooster.wrappers.ChickenVictor;
 
 public class Hardware {
-    public static CANSparkMax driveRightA;
-    public static CANSparkMax driveRightB;
-    public static CANSparkMax driveRightC;
+    public static ChickenTalon driveRightA;
+    public static ChickenVictor driveRightB;
+    public static ChickenVictor driveRightC;
 
-    public static CANSparkMax driveLeftA;
-    public static CANSparkMax driveLeftB;
-    public static CANSparkMax driveLeftC;
+    public static ChickenTalon driveLeftA;
+    public static ChickenVictor driveLeftB;
+    public static ChickenVictor driveLeftC;
 
-    public static CANSparkMax armA;
-    public static CANSparkMax armB;
+    public static ChickenTalon armA;
+    public static ChickenTalon armB;
 
     static void initAll() {
         initDrive();
@@ -21,13 +23,13 @@ public class Hardware {
     }
 
     static void initDrive() {
-        driveRightA = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
-        driveRightB = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
-        driveRightC = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
+        driveRightA = new ChickenTalon(0);
+        driveRightB = new ChickenVictor(0);
+        driveRightC = new ChickenVictor(0);
 
-        driveLeftA = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
-        driveLeftB = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
-        driveLeftC = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
+        driveLeftA = new ChickenTalon(0);
+        driveLeftB = new ChickenVictor(0);
+        driveLeftC = new ChickenVictor(0);
 
         driveRightB.follow(driveRightA);
         driveRightC.follow(driveRightA);
@@ -37,9 +39,13 @@ public class Hardware {
     }
 
     static void initArm() {
-        armA = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
-        armB = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
+        armA = new ChickenTalon(0);
+        armB = new ChickenTalon(0);
 
         armB.follow(armA);
+
+        armA.config_kP(0, 0);
+        armA.config_kI(0, 0);
+        armA.config_kD(0, 0);
     }
 }
