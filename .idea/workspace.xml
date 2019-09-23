@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86c2f0f0-a296-4490-bd3d-988408920a71" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/5.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.0/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.0/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/Hardware.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/Hardware.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/commands/drivetrain/TankDrive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/commands/drivetrain/TankDrive.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/subsystems/DriveTrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/subsystems/DriveTrain.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,6 +73,12 @@
   </component>
   <component name="ProjectId" id="1QyDlqZWSqrBRdPhucAWWfHUBiR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -96,8 +101,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1568734095962</updated>
+      <workItem from="1568832939014" duration="22000" />
+      <workItem from="1568833023905" duration="381000" />
+      <workItem from="1568833427548" duration="76000" />
+      <workItem from="1568833528259" duration="736000" />
+      <workItem from="1568992841809" duration="1138000" />
+      <workItem from="1569242374587" duration="225000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

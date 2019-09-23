@@ -2,7 +2,6 @@ package org.team1540.chonk;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import org.jetbrains.annotations.Async;
 import org.team1540.chonk.commands.drivetrain.TankDrive;
 import org.team1540.chonk.subsystems.DriveTrain;
 

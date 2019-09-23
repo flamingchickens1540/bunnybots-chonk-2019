@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-public class IO {
+public class OI {
     //driver
     public static XboxController driver = new XboxController(0);
 
