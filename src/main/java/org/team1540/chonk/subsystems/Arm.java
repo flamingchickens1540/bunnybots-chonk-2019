@@ -1,6 +1,10 @@
 package org.team1540.chonk.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.team1540.chonk.Tuning;
+
+import static org.team1540.chonk.Hardware.armA;
 
 public class Arm extends Subsystem {
 
@@ -10,6 +14,6 @@ public class Arm extends Subsystem {
     }
 
     public static void setPosition(double position) {
-
+        armA.set(ControlMode.Position, position * Tuning.ARM_TICKS_PER_DEGREE);
     }
 }
