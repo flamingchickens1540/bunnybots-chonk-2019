@@ -8,4 +8,8 @@ public class Arm extends Subsystem {
     protected void initDefaultCommand() {
 
     }
+
+    public static void setPosition(double position) {
+
+    }
 }
