@@ -13,7 +13,7 @@ public class Arm extends Subsystem {
 
     }
 
-    public static void setPosition(double position) {
+    public void setPosition(double position) {
         armA.set(ControlMode.Position, position * Tuning.ARM_TICKS_PER_DEGREE);
     }
 }
