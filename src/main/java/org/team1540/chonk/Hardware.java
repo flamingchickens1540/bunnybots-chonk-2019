@@ -12,8 +12,12 @@ public class Hardware {
     public static CANSparkMax driveLeftB;
     public static CANSparkMax driveLeftC;
 
+    public static CANSparkMax armA;
+    public static CANSparkMax armB;
+
     static void initAll() {
         initDrive();
+        initArm();
     }
 
     static void initDrive() {
@@ -25,10 +29,17 @@ public class Hardware {
         driveLeftB = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
         driveLeftC = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
 
-        Hardware.driveRightB.follow(Hardware.driveRightA);
-        Hardware.driveRightC.follow(Hardware.driveRightA);
+        driveRightB.follow(driveRightA);
+        driveRightC.follow(driveRightA);
 
-        Hardware.driveLeftB.follow(Hardware.driveLeftA);
-        Hardware.driveLeftC.follow(Hardware.driveLeftA);
+        driveLeftB.follow(driveLeftA);
+        driveLeftC.follow(driveLeftA);
+    }
+
+    static void initArm() {
+        armA = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
+        armB = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
+
+        armB.follow(armA);
     }
 }
