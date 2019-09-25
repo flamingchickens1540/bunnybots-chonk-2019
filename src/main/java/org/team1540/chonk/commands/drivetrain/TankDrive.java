@@ -14,7 +14,9 @@ public class TankDrive extends Command {
 
     @Override
     protected void execute() {
-        Robot.drivetrain.setThrottle(Utilities.processDeadzone(OI.driver.getY(GenericHID.Hand.kLeft), .1), Utilities.processDeadzone(OI.driver.getY(GenericHID.Hand.kLeft), .1));
+        double throttleRight = Utilities.processDeadzone(OI.driver.getY(GenericHID.Hand.kLeft), .1);
+        double throttleLeft = Utilities.processDeadzone(OI.driver.getY(GenericHID.Hand.kLeft), .1);
+        Robot.drivetrain.setThrottle(throttleRight, throttleLeft);
     }
 
     @Override
