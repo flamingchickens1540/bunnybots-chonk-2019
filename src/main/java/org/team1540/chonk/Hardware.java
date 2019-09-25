@@ -21,11 +21,11 @@ public class Hardware {
     }
 
     static void initDrive() {
-        driveRightA = new ChickenTalon(0);
-        driveRightB = new ChickenVictor(0);
+        driveRightA = new ChickenTalon(RobotMap.DRIVE_RIGHT_A);
+        driveRightB = new ChickenVictor(RobotMap.DRIVE_RIGHT_B);
 
-        driveLeftA = new ChickenTalon(0);
-        driveLeftB = new ChickenVictor(0);
+        driveLeftA = new ChickenTalon(RobotMap.DRIVE_LEFT_A);
+        driveLeftB = new ChickenVictor(RobotMap.DRIVE_LEFT_B);
 
         driveRightB.follow(driveRightA);
 
@@ -33,13 +33,13 @@ public class Hardware {
     }
 
     static void initArm() {
-        armA = new ChickenTalon(0);
-        armB = new ChickenTalon(0);
+        armA = new ChickenTalon(RobotMap.ARM_A);
+        armB = new ChickenTalon(RobotMap.ARM_B);
 
         armB.follow(armA);
 
-        armA.config_kP(0, 0);
-        armA.config_kI(0, 0);
-        armA.config_kD(0, 0);
+        armA.config_kP(0, Tuning.ARM_P);
+        armA.config_kI(0, Tuning.ARM_I);
+        armA.config_kD(0, Tuning.ARM_D);
     }
 }

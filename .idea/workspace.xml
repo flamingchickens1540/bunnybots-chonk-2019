@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="86c2f0f0-a296-4490-bd3d-988408920a71" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/subsystems/Climber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="86c2f0f0-a296-4490-bd3d-988408920a71" name="Default Changelist" comment="" />
+>>>>>>> Stashed changes
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +140,18 @@
       <workItem from="1569242374587" duration="1615000" />
       <workItem from="1569252882009" duration="524000" />
       <workItem from="1569253910746" duration="6877000" />
+<<<<<<< Updated upstream
+=======
     </task>
+    <task id="LOCAL-00001" summary="Remove Climber">
+      <created>1569428392891</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1569428392891</updated>
+>>>>>>> Stashed changes
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,4 +170,11 @@
       </map>
     </option>
   </component>
+<<<<<<< Updated upstream
+=======
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Remove Climber" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove Climber" />
+  </component>
+>>>>>>> Stashed changes
 </project>
