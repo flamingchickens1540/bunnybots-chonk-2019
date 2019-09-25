@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86c2f0f0-a296-4490-bd3d-988408920a71" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/subsystems/Climber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/Hardware.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/Hardware.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/Tuning.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/Tuning.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/subsystems/Arm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/team1540/chonk/subsystems/Arm.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -93,6 +91,32 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="chonk [deploy]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="deploy" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.chonk [deploy]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
