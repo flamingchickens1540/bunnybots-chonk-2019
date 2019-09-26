@@ -44,7 +44,7 @@ public class OI {
     //bindings
 
     public static void init() {
-        driverXButton.whenPressed(new TankDrive());
-        driverAButton.whenPressed(new ArcadeDrive());
+        driverXButton.toggleWhenPressed(new TankDrive());
+        //driverAButton.whenPressed(new ArcadeDrive());
     }
 }
