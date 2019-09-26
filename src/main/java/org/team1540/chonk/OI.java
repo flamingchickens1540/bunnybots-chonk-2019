@@ -38,4 +38,8 @@ public class OI {
 
     private static Button copilotRightJoystickButton = new JoystickButton(copilot, 10);
     private static Button copilotLeftJoystickButton = new JoystickButton(copilot, 9);
+
+    public static void init() {
+
+    }
 }
