@@ -14,8 +14,8 @@ public class ArcadeDrive extends Command {
 
     @Override
     protected void execute() {
-        double throttleRight = Utilities.processDeadzone(OI.driver.getY(GenericHID.Hand.kRight), .1) - Utilities.processDeadzone(OI.driver.getX(GenericHID.Hand.kRight), .1);
-        double throttleLeft  = Utilities.processDeadzone(OI.driver.getY(GenericHID.Hand.kRight), .1) + Utilities.processDeadzone(OI.driver.getX(GenericHID.Hand.kRight), .1);
+        double throttleRight = -(Utilities.processDeadzone(OI.driver.getY(GenericHID.Hand.kRight), .1) + Utilities.processDeadzone(OI.driver.getX(GenericHID.Hand.kRight), .1));
+        double throttleLeft  = -(Utilities.processDeadzone(OI.driver.getX(GenericHID.Hand.kRight), .1) - Utilities.processDeadzone(OI.driver.getY(GenericHID.Hand.kRight), .1));
         Robot.drivetrain.setThrottle(throttleRight, throttleLeft);
     }
 
