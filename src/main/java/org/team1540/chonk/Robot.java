@@ -14,6 +14,7 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         Hardware.initAll();
+        OI.init();
         drivetrain = new DriveTrain();
         arm = new Arm();
     }

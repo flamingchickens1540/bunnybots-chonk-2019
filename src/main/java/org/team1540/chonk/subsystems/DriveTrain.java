@@ -2,12 +2,13 @@ package org.team1540.chonk.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team1540.chonk.Hardware;
+import org.team1540.chonk.commands.drivetrain.ArcadeDrive;
 import org.team1540.chonk.commands.drivetrain.TankDrive;
 
 public class DriveTrain extends Subsystem {
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new TankDrive());
+        setDefaultCommand(new ArcadeDrive());
     }
 
     public void setThrottle(double right, double left) {

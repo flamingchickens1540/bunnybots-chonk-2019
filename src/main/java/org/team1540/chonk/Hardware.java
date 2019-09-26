@@ -8,9 +8,11 @@ import org.team1540.rooster.wrappers.ChickenVictor;
 public class Hardware {
     public static ChickenTalon driveRightA;
     public static ChickenVictor driveRightB;
+    public static ChickenVictor driveRightC;
 
     public static ChickenTalon driveLeftA;
     public static ChickenVictor driveLeftB;
+    public static ChickenVictor driveLeftC;
 
     public static ChickenTalon armA;
     public static ChickenTalon armB;
@@ -23,13 +25,17 @@ public class Hardware {
     static void initDrive() {
         driveRightA = new ChickenTalon(RobotMap.DRIVE_RIGHT_A);
         driveRightB = new ChickenVictor(RobotMap.DRIVE_RIGHT_B);
+        driveRightC = new ChickenVictor(RobotMap.DRIVE_RIGHT_C);
 
         driveLeftA = new ChickenTalon(RobotMap.DRIVE_LEFT_A);
         driveLeftB = new ChickenVictor(RobotMap.DRIVE_LEFT_B);
+        driveLeftC = new ChickenVictor(RobotMap.DRIVE_LEFT_C);
 
         driveRightB.follow(driveRightA);
+        driveRightC.follow(driveRightA);
 
         driveLeftB.follow(driveLeftA);
+        driveLeftC.follow(driveLeftA);
     }
 
     static void initArm() {

@@ -3,6 +3,8 @@ package org.team1540.chonk;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.team1540.chonk.commands.drivetrain.ArcadeDrive;
+import org.team1540.chonk.commands.drivetrain.TankDrive;
 
 public class OI {
     //driver
@@ -38,4 +40,11 @@ public class OI {
 
     private static Button copilotRightJoystickButton = new JoystickButton(copilot, 10);
     private static Button copilotLeftJoystickButton = new JoystickButton(copilot, 9);
+
+    //bindings
+
+    public static void init() {
+        driverXButton.whenPressed(new TankDrive());
+        driverAButton.whenPressed(new ArcadeDrive());
+    }
 }
