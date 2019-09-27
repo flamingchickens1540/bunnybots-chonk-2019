@@ -1,4 +1,4 @@
-package org.team1540.chonk.commands.drivetrain;
+package org.team1540.chonk.commands.arm;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.team1540.chonk.Robot;

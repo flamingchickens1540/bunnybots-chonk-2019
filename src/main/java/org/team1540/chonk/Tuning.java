@@ -5,8 +5,8 @@ public class Tuning {
     public static final double ARM_TICKS_PER_DEGREE = 1;
     public static final double ARM_POSITION_TOLERANCE = 5;
 
-    public static final double ARM_P = 1;
-    public static final double ARM_I = 1;
-    public static final double ARM_D = 1;
+    //public static final double ARM_P = 1;
+    //public static final double ARM_I = 1;
+    //public static final double ARM_D = 1;
 
 }

@@ -2,6 +2,7 @@ package org.team1540.chonk;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1540.chonk.commands.drivetrain.TankDrive;
 import org.team1540.chonk.subsystems.Arm;
 import org.team1540.chonk.subsystems.DriveTrain;
@@ -20,8 +21,13 @@ public class Robot extends TimedRobot {
     }
 
     @Override
-    public void teleopPeriodic() {
+    public void teleopInit() {
+        Hardware.setArmPID();
+    }
 
+    @Override
+    public void teleopPeriodic() {
+        SmartDashboard.putNumber("arm/encoder", arm.getPosition());
     }
 
     @Override

@@ -2,6 +2,7 @@ package org.team1540.chonk;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1540.rooster.wrappers.ChickenTalon;
 import org.team1540.rooster.wrappers.ChickenVictor;
 
@@ -14,8 +15,8 @@ public class Hardware {
     public static ChickenVictor driveLeftB;
     public static ChickenVictor driveLeftC;
 
-    public static ChickenTalon armA;
-    public static ChickenTalon armB;
+    public static ChickenTalon armR;
+    public static ChickenTalon armL;
 
     static void initAll() {
         initDrive();
@@ -39,13 +40,19 @@ public class Hardware {
     }
 
     static void initArm() {
-        armA = new ChickenTalon(RobotMap.ARM_A);
-        armB = new ChickenTalon(RobotMap.ARM_B);
+        armR = new ChickenTalon(RobotMap.ARM_R);
+        armL = new ChickenTalon(RobotMap.ARM_L);
 
-        armB.follow(armA);
+        armL.follow(armR);
 
-        armA.config_kP(0, Tuning.ARM_P);
-        armA.config_kI(0, Tuning.ARM_I);
-        armA.config_kD(0, Tuning.ARM_D);
+//        armA.config_kP(0, Tuning.ARM_P);
+//        armA.config_kI(0, Tuning.ARM_I);
+//        armA.config_kD(0, Tuning.ARM_D);
+    }
+
+    static void setArmPID() {
+        armR.config_kP(0, SmartDashboard.getNumber("arm/p", 0));
+        armR.config_kI(0, SmartDashboard.getNumber("arm/i", 0));
+        armR.config_kD(0, SmartDashboard.getNumber("arm/d", 0));
     }
 }
