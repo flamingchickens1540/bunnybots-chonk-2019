@@ -12,8 +12,8 @@ public class Hardware {
     public static ChickenTalon driveLeftA;
     public static ChickenVictor driveLeftB;
 
-    public static ChickenTalon armA;
-    public static ChickenTalon armB;
+    public static ChickenTalon armR;
+    public static ChickenTalon armL;
 
     static void initAll() {
         initDrive();
@@ -33,13 +33,13 @@ public class Hardware {
     }
 
     static void initArm() {
-        armA = new ChickenTalon(RobotMap.ARM_A);
-        armB = new ChickenTalon(RobotMap.ARM_B);
+        armR = new ChickenTalon(RobotMap.ARM_R);
+        armL = new ChickenTalon(RobotMap.ARM_L);
 
-        armB.follow(armA);
+        armL.follow(armR);
 
-        armA.config_kP(0, Tuning.ARM_P);
-        armA.config_kI(0, Tuning.ARM_I);
-        armA.config_kD(0, Tuning.ARM_D);
+        armR.config_kP(0, Tuning.ARM_P);
+        armR.config_kI(0, Tuning.ARM_I);
+        armR.config_kD(0, Tuning.ARM_D);
     }
 }
