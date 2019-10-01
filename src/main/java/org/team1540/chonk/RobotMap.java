@@ -9,6 +9,6 @@ public class RobotMap {
     public static final int DRIVE_LEFT_B = 12;
     public static final int DRIVE_LEFT_C = 11;
 
-    public static final int ARM_R = 0;
-    public static final int ARM_L = 0;
+    public static final int ARM_R = 4;
+    public static final int ARM_L = 5;
 }

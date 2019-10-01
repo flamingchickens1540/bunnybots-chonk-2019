@@ -17,6 +17,6 @@ public class Arm extends Subsystem {
     }
 
     public double getPosition() {
-        return Hardware.armR.getSelectedSensorPosition() / Tuning.ARM_TICKS_PER_DEGREE;
+        return Hardware.armL.getSelectedSensorPosition() / Tuning.ARM_TICKS_PER_DEGREE;
     }
 }

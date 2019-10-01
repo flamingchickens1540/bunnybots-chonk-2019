@@ -43,7 +43,7 @@ public class Hardware {
         armR = new ChickenTalon(RobotMap.ARM_R);
         armL = new ChickenTalon(RobotMap.ARM_L);
 
-        armL.follow(armR);
+        armR.follow(armL);
 
 //        armA.config_kP(0, Tuning.ARM_P);
 //        armA.config_kI(0, Tuning.ARM_I);
@@ -51,8 +51,8 @@ public class Hardware {
     }
 
     static void setArmPID() {
-        armR.config_kP(0, SmartDashboard.getNumber("arm/p", 0));
-        armR.config_kI(0, SmartDashboard.getNumber("arm/i", 0));
-        armR.config_kD(0, SmartDashboard.getNumber("arm/d", 0));
+        armL.config_kP(0, SmartDashboard.getNumber("arm/p", 1));
+        armL.config_kI(0, SmartDashboard.getNumber("arm/i", 1));
+        armL.config_kD(0, SmartDashboard.getNumber("arm/d", 1));
     }
 }

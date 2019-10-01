@@ -22,6 +22,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
+        Hardware.armL.setSelectedSensorPosition(0);
         Hardware.setArmPID();
     }
 
