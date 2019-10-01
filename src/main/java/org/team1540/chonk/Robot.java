@@ -14,6 +14,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void robotInit() {
+        System.out.println("Robot Initializing...");
         drivetrain = new DriveTrain();
         arm = new Arm();
         Hardware.initAll();
@@ -22,6 +23,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
+        System.out.println("Teleop Initializing...");
         Hardware.armL.setSelectedSensorPosition(0);
         Hardware.setArmPID();
     }

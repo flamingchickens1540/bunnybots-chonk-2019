@@ -1,5 +1,6 @@
 package org.team1540.chonk;
 
+import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -18,12 +19,21 @@ public class Hardware {
     public static ChickenTalon armR;
     public static ChickenTalon armL;
 
+    public static AHRS navx;
+
     static void initAll() {
+        System.out.println("Initializing Robot Hardware...");
+
         initDrive();
         initArm();
+        initNavX();
+
+        System.out.println("Robot Hardware Initialized");
     }
 
     static void initDrive() {
+        System.out.println("Initializing Drive...");
+
         driveRightA = new ChickenTalon(RobotMap.DRIVE_RIGHT_A);
         driveRightB = new ChickenVictor(RobotMap.DRIVE_RIGHT_B);
         driveRightC = new ChickenVictor(RobotMap.DRIVE_RIGHT_C);
@@ -40,6 +50,8 @@ public class Hardware {
     }
 
     static void initArm() {
+        System.out.println("Initializing Arm...");
+
         armR = new ChickenTalon(RobotMap.ARM_R);
         armL = new ChickenTalon(RobotMap.ARM_L);
 
@@ -50,7 +62,15 @@ public class Hardware {
 //        armA.config_kD(0, Tuning.ARM_D);
     }
 
+    static void initNavX() {
+        System.out.println("Initializing NavX...");
+
+        navx = new AHRS(RobotMap.NAVX);
+    }
+
     static void setArmPID() {
+        System.out.println("Setting Arm PID...");
+
         armL.config_kP(0, SmartDashboard.getNumber("arm/p", 1));
         armL.config_kI(0, SmartDashboard.getNumber("arm/i", 1));
         armL.config_kD(0, SmartDashboard.getNumber("arm/d", 1));
