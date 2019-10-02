@@ -13,7 +13,7 @@ public class Arm extends Subsystem {
     }
 
     public void setPosition(double position) {
-        Hardware.armR.set(ControlMode.Position, position * Tuning.ARM_TICKS_PER_DEGREE);
+        Hardware.armL.set(ControlMode.Position, position * Tuning.ARM_TICKS_PER_DEGREE);
     }
 
     public double getPosition() {
