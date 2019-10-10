@@ -36,5 +36,6 @@ public class Robot extends TimedRobot {
     @Override
     public void robotPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("arm/encoder", arm.getPosition());
     }
 }

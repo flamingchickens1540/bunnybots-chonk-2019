@@ -47,6 +47,6 @@ public class OI {
         System.out.println("Initializing OI...");
 
         driverXButton.toggleWhenPressed(new TankDrive());
-        driverAButton.whenPressed(new MoveArmToPosition(2048));
+        driverAButton.whenPressed(new MoveArmToPosition(15000));
     }
 }

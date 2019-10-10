@@ -57,6 +57,18 @@ public class Hardware {
 
         armR.follow(armL);
 
+        armR.setInverted(true);
+        armL.setInverted(true);
+
+        armL.configPeakOutputForward(.5);
+        armL.configPeakOutputReverse(-.5);
+
+        armL.setSensorPhase(true);
+
+        SmartDashboard.putNumber("arm/p", 1);
+        SmartDashboard.putNumber("arm/i", 1);
+        SmartDashboard.putNumber("arm/d", 1);
+
 //        armA.config_kP(0, Tuning.ARM_P);
 //        armA.config_kI(0, Tuning.ARM_I);
 //        armA.config_kD(0, Tuning.ARM_D);
@@ -72,7 +84,7 @@ public class Hardware {
         System.out.println("Setting Arm PID...");
 
         armL.config_kP(0, SmartDashboard.getNumber("arm/p", 1));
-        armL.config_kI(0, SmartDashboard.getNumber("arm/i", 1));
-        armL.config_kD(0, SmartDashboard.getNumber("arm/d", 1));
+        armL.config_kI(0, SmartDashboard.getNumber("arm/i", 0));
+        armL.config_kD(0, SmartDashboard.getNumber("arm/d", 0));
     }
 }

@@ -16,10 +16,6 @@ public class MoveArmToPosition extends Command {
     @Override
     protected void initialize() {
         System.out.println("Moving Arm to position " + position);
-    }
-
-    @Override
-    protected void execute() {
         Robot.arm.setPosition(position);
     }
 
