@@ -1,11 +1,15 @@
 package org.team1540.chonk;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1540.chonk.commands.drivetrain.TankDrive;
 import org.team1540.chonk.subsystems.Arm;
 import org.team1540.chonk.subsystems.DriveTrain;
+
+import static org.team1540.chonk.OI.driver;
 
 public class Robot extends TimedRobot {
 
@@ -19,6 +23,7 @@ public class Robot extends TimedRobot {
         arm = new Arm();
         Hardware.initAll();
         OI.init();
+        SmartDashboard.putNumber("arm/power", 0);
     }
 
     @Override
@@ -30,7 +35,11 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopPeriodic() {
-        SmartDashboard.putNumber("arm/encoder", arm.getPosition());
+        /*
+        double armPower = OI.driver.getY(GenericHID.Hand.kRight);
+        Hardware.armL.set(ControlMode.PercentOutput, armPower);
+        SmartDashboard.putNumber("arm/power", armPower);
+         */
     }
 
     @Override

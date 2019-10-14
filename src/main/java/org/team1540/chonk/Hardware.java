@@ -42,6 +42,14 @@ public class Hardware {
         driveLeftB = new ChickenVictor(RobotMap.DRIVE_LEFT_B);
         driveLeftC = new ChickenVictor(RobotMap.DRIVE_LEFT_C);
 
+        driveRightA.configFactoryDefault();
+        driveRightB.configFactoryDefault();
+        driveRightC.configFactoryDefault();
+
+        driveLeftA.configFactoryDefault();
+        driveLeftB.configFactoryDefault();
+        driveLeftC.configFactoryDefault();
+
         driveRightB.follow(driveRightA);
         driveRightC.follow(driveRightA);
 
@@ -55,6 +63,9 @@ public class Hardware {
         armR = new ChickenTalon(RobotMap.ARM_R);
         armL = new ChickenTalon(RobotMap.ARM_L);
 
+        armR.configFactoryDefault();
+        armL.configFactoryDefault();
+
         armR.follow(armL);
 
         armR.setInverted(true);
@@ -66,8 +77,8 @@ public class Hardware {
         armL.setSensorPhase(true);
 
         SmartDashboard.putNumber("arm/p", 1);
-        SmartDashboard.putNumber("arm/i", 1);
-        SmartDashboard.putNumber("arm/d", 1);
+        SmartDashboard.putNumber("arm/i", 0);
+        SmartDashboard.putNumber("arm/d", 0);
 
 //        armA.config_kP(0, Tuning.ARM_P);
 //        armA.config_kI(0, Tuning.ARM_I);

@@ -9,7 +9,6 @@ public class Arm extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
-
     }
 
     public void setPosition(double position) {
