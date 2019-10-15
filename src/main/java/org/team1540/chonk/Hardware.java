@@ -79,6 +79,7 @@ public class Hardware {
 
     static void initNavX() {
         System.out.println("Initializing NavX...");
+        // Navx.
 
         navx = new AHRS(RobotMap.NAVX);
     }
