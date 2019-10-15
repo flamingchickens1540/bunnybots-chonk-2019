@@ -9,8 +9,6 @@ import org.team1540.chonk.commands.drivetrain.TankDrive;
 import org.team1540.chonk.subsystems.Arm;
 import org.team1540.chonk.subsystems.DriveTrain;
 
-import static org.team1540.chonk.OI.driver;
-
 public class Robot extends TimedRobot {
 
     public static DriveTrain drivetrain;
@@ -23,14 +21,15 @@ public class Robot extends TimedRobot {
         arm = new Arm();
         Hardware.initAll();
         OI.init();
-        SmartDashboard.putNumber("arm/power", 0);
     }
 
     @Override
     public void teleopInit() {
+        Hardware.armL.set(ControlMode.PercentOutput, 0);
         System.out.println("Teleop Initializing...");
         Hardware.armL.setSelectedSensorPosition(0);
         Hardware.setArmPID();
+//        SmartDashboard.putNumber("arm/power", 0);
     }
 
     @Override
@@ -39,12 +38,13 @@ public class Robot extends TimedRobot {
         double armPower = OI.driver.getY(GenericHID.Hand.kRight);
         Hardware.armL.set(ControlMode.PercentOutput, armPower);
         SmartDashboard.putNumber("arm/power", armPower);
-         */
+        */
     }
 
     @Override
     public void robotPeriodic() {
         Scheduler.getInstance().run();
         SmartDashboard.putNumber("arm/encoder", arm.getPosition());
+        SmartDashboard.putNumber("arm/velocity", arm.getVelocity());
     }
 }

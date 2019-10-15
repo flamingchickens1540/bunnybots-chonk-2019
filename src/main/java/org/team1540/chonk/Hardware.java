@@ -71,18 +71,10 @@ public class Hardware {
         armR.setInverted(true);
         armL.setInverted(true);
 
-        armL.configPeakOutputForward(.5);
-        armL.configPeakOutputReverse(-.5);
+//        armL.configPeakOutputForward(.5);
+//        armL.configPeakOutputReverse(-.5);
 
         armL.setSensorPhase(true);
-
-        SmartDashboard.putNumber("arm/p", 1);
-        SmartDashboard.putNumber("arm/i", 0);
-        SmartDashboard.putNumber("arm/d", 0);
-
-//        armA.config_kP(0, Tuning.ARM_P);
-//        armA.config_kI(0, Tuning.ARM_I);
-//        armA.config_kD(0, Tuning.ARM_D);
     }
 
     static void initNavX() {
@@ -94,8 +86,17 @@ public class Hardware {
     static void setArmPID() {
         System.out.println("Setting Arm PID...");
 
+        /*
         armL.config_kP(0, SmartDashboard.getNumber("arm/p", 1));
         armL.config_kI(0, SmartDashboard.getNumber("arm/i", 0));
         armL.config_kD(0, SmartDashboard.getNumber("arm/d", 0));
+         */
+
+        armL.config_kP(0, Tuning.ARM_P);
+        armL.config_kI(0, Tuning.ARM_I);
+        armL.config_kD(0, Tuning.ARM_D);
+        armL.config_kF(0, Tuning.ARM_F);
+        armL.configMotionCruiseVelocity(Tuning.ARM_CRUISE_VAL);
+        armL.configMotionAcceleration(Tuning.ARM_ACCEL);
     }
 }
