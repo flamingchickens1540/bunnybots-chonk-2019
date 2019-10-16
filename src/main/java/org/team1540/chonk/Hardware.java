@@ -88,9 +88,9 @@ public class Hardware {
         System.out.println("Setting Arm PID...");
 
         /*
-        armL.config_kP(0, SmartDashboard.getNumber("arm/p", 1));
-        armL.config_kI(0, SmartDashboard.getNumber("arm/i", 0));
-        armL.config_kD(0, SmartDashboard.getNumber("arm/d", 0));
+        armL.config_kP(0, SmartDashboard.getNumber("arm/p", Tuning.ARM_P));
+        armL.config_kI(0, SmartDashboard.getNumber("arm/i", Tuning.ARM_I));
+        armL.config_kD(0, SmartDashboard.getNumber("arm/d", Tuning.ARM_D));
          */
 
         armL.config_kP(0, Tuning.ARM_P);

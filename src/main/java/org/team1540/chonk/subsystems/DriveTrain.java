@@ -8,7 +8,8 @@ import org.team1540.chonk.commands.drivetrain.TankDrive;
 public class DriveTrain extends Subsystem {
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new ArcadeDrive());
+//        setDefaultCommand(new ArcadeDrive());
+        setDefaultCommand(new TankDrive());
     }
 
     public void setThrottle(double right, double left) {

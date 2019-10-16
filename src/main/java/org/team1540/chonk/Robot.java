@@ -29,16 +29,10 @@ public class Robot extends TimedRobot {
         System.out.println("Teleop Initializing...");
         Hardware.armL.setSelectedSensorPosition(0);
         Hardware.setArmPID();
-//        SmartDashboard.putNumber("arm/power", 0);
     }
 
     @Override
     public void teleopPeriodic() {
-        /*
-        double armPower = OI.driver.getY(GenericHID.Hand.kRight);
-        Hardware.armL.set(ControlMode.PercentOutput, armPower);
-        SmartDashboard.putNumber("arm/power", armPower);
-        */
     }
 
     @Override
