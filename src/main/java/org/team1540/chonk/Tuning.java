@@ -12,4 +12,8 @@ public class Tuning {
     public static final int ARM_CRUISE_VAL = 5000;
     public static final int ARM_ACCEL = 10000;
 
+    public static double POINT_DRIVE_P = 0;
+    public static double POINT_DRIVE_I = 0;
+    public static double POINT_DRIVE_D = 0;
+
 }

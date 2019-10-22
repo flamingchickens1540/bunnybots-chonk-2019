@@ -3,6 +3,7 @@ package org.team1540.chonk;
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1540.rooster.wrappers.ChickenTalon;
 import org.team1540.rooster.wrappers.ChickenVictor;
@@ -21,12 +22,17 @@ public class Hardware {
 
     public static AHRS navx;
 
+    public static Solenoid redLEDs;
+    public static Solenoid greenLEDs;
+    public static Solenoid blueLEDs;
+
     static void initAll() {
         System.out.println("Initializing Robot Hardware...");
 
         initDrive();
         initArm();
         initNavX();
+        initLEDs();
 
         System.out.println("Robot Hardware Initialized");
     }
@@ -49,6 +55,14 @@ public class Hardware {
         driveLeftA.configFactoryDefault();
         driveLeftB.configFactoryDefault();
         driveLeftC.configFactoryDefault();
+
+        driveRightA.setBrake(true);
+        driveRightB.setBrake(false);
+        driveRightC.setBrake(false);
+
+        driveLeftA.setBrake(true);
+        driveLeftB.setBrake(false);
+        driveLeftC.setBrake(false);
 
         driveRightB.follow(driveRightA);
         driveRightC.follow(driveRightA);
@@ -79,9 +93,16 @@ public class Hardware {
 
     static void initNavX() {
         System.out.println("Initializing NavX...");
-        // Navx.
 
         navx = new AHRS(RobotMap.NAVX);
+    }
+
+    static void initLEDs() {
+        System.out.println("Initializing LEDs...");
+
+        redLEDs = new Solenoid(RobotMap.LED_RED);
+        greenLEDs = new Solenoid(RobotMap.LED_GREEN);
+        blueLEDs = new Solenoid(RobotMap.LED_BLUE);
     }
 
     static void setArmPID() {
@@ -100,4 +121,16 @@ public class Hardware {
         armL.configMotionCruiseVelocity(Tuning.ARM_CRUISE_VAL);
         armL.configMotionAcceleration(Tuning.ARM_ACCEL);
     }
+
+    static void setPointDrivePID() {
+        System.out.println("Setting Point Drive PID...");
+
+
+    }
 }
+
+
+
+
+
+

@@ -19,11 +19,11 @@ public class ArcadeDrive extends Command {
 
     @Override
     protected void execute() {
-        double joystickY = Utilities.processDeadzone(OI.driver.getY(GenericHID.Hand.kRight), .1);
-        double joystickX = Utilities.processDeadzone(OI.driver.getX(GenericHID.Hand.kRight), .1);
-        double throttleRight = -(joystickX + joystickY);
-        double throttleLeft  = -(joystickX - joystickY);
-        Robot.drivetrain.setThrottle(throttleRight, throttleLeft);
+        double rightX = OI.getJoystick(GenericHID.Hand.kRight, OI.Axis.X);
+        double rightY = OI.getJoystick(GenericHID.Hand.kRight, OI.Axis.Y);
+        double throttleLeft  = rightY + rightX;
+        double throttleRight = rightY - rightX;
+        Robot.drivetrain.setThrottle(throttleLeft, throttleRight);
     }
 
     @Override

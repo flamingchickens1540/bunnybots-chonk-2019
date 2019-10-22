@@ -19,12 +19,10 @@ public class TankDrive extends Command {
 
     @Override
     protected void execute() {
-        double joystickRight = -Utilities.processDeadzone(OI.driver.getY(GenericHID.Hand.kRight), .1);
-        double joystickLeft = Utilities.processDeadzone(OI.driver.getY(GenericHID.Hand.kLeft), .1);
-        double triggerThrottle = Utilities.processDeadzone(OI.driver.getTriggerAxis(GenericHID.Hand.kRight) - OI.driver.getTriggerAxis(GenericHID.Hand.kLeft), .1);
-        double throttleRight = triggerThrottle + joystickRight;
-        double throttleLeft = -triggerThrottle + joystickLeft;
-        Robot.drivetrain.setThrottle(throttleRight, throttleLeft);
+        double triggerThrottle = OI.getTriggerThrottle();
+        double throttleLeft = triggerThrottle + OI.getJoystick(GenericHID.Hand.kLeft, OI.Axis.Y);
+        double throttleRight = triggerThrottle + OI.getJoystick(GenericHID.Hand.kRight, OI.Axis.Y);
+        Robot.drivetrain.setThrottle(throttleLeft, throttleRight);
     }
 
     @Override

@@ -1,2 +1,1 @@
-# Code for 2019 Chonk bunnybot
-
+# Code for 2019 Chonk Bunnybot

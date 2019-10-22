@@ -1,11 +1,13 @@
 package org.team1540.chonk;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.team1540.chonk.commands.arm.MoveArmToPosition;
-import org.team1540.chonk.commands.drivetrain.ArcadeDrive;
 import org.team1540.chonk.commands.drivetrain.TankDrive;
+import org.team1540.rooster.Utilities;
+import org.team1540.rooster.util.SimpleCommand;
 
 public class OI {
     //driver
@@ -41,12 +43,29 @@ public class OI {
     private static Button copilotRightJoystickButton = new JoystickButton(copilot, 10);
     private static Button copilotLeftJoystickButton = new JoystickButton(copilot, 9);
 
-    //bindings
+    public enum Axis {
+        X,
+        Y
+    }
 
+    public static double getJoystick(GenericHID.Hand hand, Axis axis) {
+        if (axis == Axis.X) {
+            return Utilities.processDeadzone(OI.driver.getX(hand), .1);
+        } else {
+            return -Utilities.processDeadzone(OI.driver.getY(hand), .1);
+        }
+    }
+
+    public static double getTriggerThrottle() {
+        return Utilities.scale(Utilities.processDeadzone(OI.driver.getTriggerAxis(GenericHID.Hand.kRight) - OI.driver.getTriggerAxis(GenericHID.Hand.kLeft), .1), 2);
+    }
+
+    //bindings
     public static void init() {
         System.out.println("Initializing OI...");
-//        driverXButton.toggleWhenPressed(new TankDrive());
-        driverXButton.toggleWhenPressed(new ArcadeDrive());
+        driverXButton.toggleWhenPressed(new TankDrive());
+//        driverXButton.toggleWhenPressed(new ArcadeDrive());
         driverAButton.whenPressed(new MoveArmToPosition(35000));
+        driverYButton.whenPressed(new SimpleCommand("ZeroNavX", Hardware.navx::zeroYaw));
     }
 }
