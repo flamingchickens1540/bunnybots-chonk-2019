@@ -1,12 +1,12 @@
 package org.team1540.chonk;
 
 import com.kauailabs.navx.frc.AHRS;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel;
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1540.rooster.wrappers.ChickenTalon;
 import org.team1540.rooster.wrappers.ChickenVictor;
+import org.team1540.rooster.wrappers.RevBlinken;
 
 public class Hardware {
     public static ChickenTalon driveRightA;
@@ -22,9 +22,9 @@ public class Hardware {
 
     public static AHRS navx;
 
-    public static Solenoid redLEDs;
-    public static Solenoid greenLEDs;
-    public static Solenoid blueLEDs;
+    public static RevBlinken leds;
+
+    public static NetworkTable limelight;
 
     static void initAll() {
         System.out.println("Initializing Robot Hardware...");
@@ -33,6 +33,7 @@ public class Hardware {
         initArm();
         initNavX();
         initLEDs();
+        initLimelight();
 
         System.out.println("Robot Hardware Initialized");
     }
@@ -100,9 +101,13 @@ public class Hardware {
     static void initLEDs() {
         System.out.println("Initializing LEDs...");
 
-        redLEDs = new Solenoid(RobotMap.LED_RED);
-        greenLEDs = new Solenoid(RobotMap.LED_GREEN);
-        blueLEDs = new Solenoid(RobotMap.LED_BLUE);
+        leds = new RevBlinken(RobotMap.LED);
+    }
+
+    static void initLimelight() {
+        System.out.println("Initializing Limelight");
+
+        limelight = NetworkTableInstance.getDefault().getTable("limelight");
     }
 
     static void setArmPID() {
@@ -122,10 +127,20 @@ public class Hardware {
         armL.configMotionAcceleration(Tuning.ARM_ACCEL);
     }
 
-    static void setPointDrivePID() {
-        System.out.println("Setting Point Drive PID...");
-
-
+    public static double getLimelightP() {
+        double p = SmartDashboard.getNumber("drive/limelightp", Tuning.LIMELIGHT_P);
+//        double p = Tuning.LIMELIGHT_P;
+        return p;
+    }
+    public static double getLimelightI() {
+        double i = SmartDashboard.getNumber("drive/limelighti", Tuning.LIMELIGHT_I);
+//        double i = Tuning.LIMELIGHT_I;
+        return i;
+    }
+    public static double getLimelightD() {
+        double d = SmartDashboard.getNumber("drive/limelightd", Tuning.LIMELIGHT_D);
+//        double d = Tuning.LIMELIGHT_D;
+        return d;
     }
 }
 

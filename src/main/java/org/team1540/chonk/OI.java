@@ -4,7 +4,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.opencv.core.MatOfDouble;
 import org.team1540.chonk.commands.arm.MoveArmToPosition;
+import org.team1540.chonk.commands.drivetrain.ArcadeDrive;
+import org.team1540.chonk.commands.drivetrain.LineUp;
+import org.team1540.chonk.commands.drivetrain.ModifiedArcadeDrive;
 import org.team1540.chonk.commands.drivetrain.TankDrive;
 import org.team1540.rooster.Utilities;
 import org.team1540.rooster.util.SimpleCommand;
@@ -63,9 +67,9 @@ public class OI {
     //bindings
     public static void init() {
         System.out.println("Initializing OI...");
-        driverXButton.toggleWhenPressed(new TankDrive());
-//        driverXButton.toggleWhenPressed(new ArcadeDrive());
+        driverXButton.toggleWhenPressed(new ArcadeDrive());
         driverAButton.whenPressed(new MoveArmToPosition(35000));
         driverYButton.whenPressed(new SimpleCommand("ZeroNavX", Hardware.navx::zeroYaw));
+        driverAButton.whenPressed(new LineUp());
     }
 }

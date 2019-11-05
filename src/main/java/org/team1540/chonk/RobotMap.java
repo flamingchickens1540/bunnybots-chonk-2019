@@ -16,7 +16,5 @@ public class RobotMap {
 
     public static final Port NAVX = Port.kMXP;
 
-    public static final int LED_RED = 4;
-    public static final int LED_GREEN = 5;
-    public static final int LED_BLUE = 6;
+    public static final int LED = 9;
 }
