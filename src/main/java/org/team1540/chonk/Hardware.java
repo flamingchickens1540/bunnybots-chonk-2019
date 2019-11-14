@@ -17,6 +17,8 @@ public class Hardware {
     public static ChickenTalon driveLeftA;
     public static ChickenVictor driveLeftB;
 
+    public static ChickenTalon arm;
+
     public static AHRS navx;
 
     public static RevBlinken leds;
@@ -57,30 +59,18 @@ public class Hardware {
         driveLeftB.setBrake(false);
 
         driveRightB.follow(driveRightA);
-
         driveLeftB.follow(driveLeftA);
     }
 
     static void initArm() {
         System.out.println("Initializing Arm...");
 
-        armA = new ChickenTalon(RobotMap.ARM_A);
-        armB = new ChickenTalon(RobotMap.ARM_B);
-
-        armA.configFactoryDefault();
-        armB.configFactoryDefault();
-
-        armA.follow(armB);
-
-        armA.setInverted(true);
-        armB.setInverted(true);
-
-//        armL.configPeakOutputForward(.5);
-//        armL.configPeakOutputReverse(-.5);
-
-        armL.setSensorPhase(true);
+        arm = new ChickenTalon(RobotMap.ARM);
+        arm.configFactoryDefault();
+        arm.setInverted(true);
+        arm.setSensorPhase(true);
+//        arm.configPeakOutputForward(.5);
     }
-}
 
     static void initNavX() {
         System.out.println("Initializing NavX...");
@@ -109,12 +99,12 @@ public class Hardware {
         armL.config_kD(0, SmartDashboard.getNumber("arm/d", Tuning.ARM_D));
          */
 
-        armL.config_kP(0, Tuning.ARM_P);
-        armL.config_kI(0, Tuning.ARM_I);
-        armL.config_kD(0, Tuning.ARM_D);
-        armL.config_kF(0, Tuning.ARM_F);
-        armL.configMotionCruiseVelocity(Tuning.ARM_CRUISE_VAL);
-        armL.configMotionAcceleration(Tuning.ARM_ACCEL);
+        arm.config_kP(0, Tuning.ARM_P);
+        arm.config_kI(0, Tuning.ARM_I);
+        arm.config_kD(0, Tuning.ARM_D);
+        arm.config_kF(0, Tuning.ARM_F);
+        arm.configMotionCruiseVelocity(Tuning.ARM_CRUISE_VAL);
+        arm.configMotionAcceleration(Tuning.ARM_ACCEL);
     }
 
     public static double getLimelightP() {

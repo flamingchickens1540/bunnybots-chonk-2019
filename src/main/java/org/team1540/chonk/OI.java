@@ -48,6 +48,11 @@ public class OI {
     private static Button copilotRightJoystickButton = new JoystickButton(copilot, 10);
     private static Button copilotLeftJoystickButton = new JoystickButton(copilot, 9);
 
+    private static Button copilotDpadUp = new DPadButton(copilot, 0, DPadAxis.UP);
+    private static Button copilotDpadDown = new DPadButton(copilot, 0, DPadAxis.DOWN);
+    private static Button copilotDpadLeft = new DPadButton(copilot, 0, DPadAxis.LEFT);
+    private static Button copilotDpadRight = new DPadButton(copilot, 0, DPadAxis.RIGHT);
+
     public enum Axis {
         X,
         Y

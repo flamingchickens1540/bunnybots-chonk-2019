@@ -31,12 +31,10 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
-        Hardware.armL.set(ControlMode.PercentOutput, 0);
         System.out.println("Teleop Initializing...");
-        Hardware.armL.setSelectedSensorPosition(0);
+        Hardware.arm.set(ControlMode.PercentOutput, 0);
+        Hardware.arm.setSelectedSensorPosition(0);
         Hardware.setArmPID();
-        Hardware.setElevatorPID();
-        Hardware.elevatorL.set(0);
     }
 
     @Override
