@@ -13,10 +13,17 @@ public class ArcadeDrive extends Command {
     }
 
     @Override
+    protected void initialize() {
+        System.out.println("Starting Arcade Drive");
+    }
+
+    @Override
     protected void execute() {
-        double throttleRight = -(Utilities.processDeadzone(OI.driver.getY(GenericHID.Hand.kRight), .1) + Utilities.processDeadzone(OI.driver.getX(GenericHID.Hand.kRight), .1));
-        double throttleLeft  = -(Utilities.processDeadzone(OI.driver.getX(GenericHID.Hand.kRight), .1) - Utilities.processDeadzone(OI.driver.getY(GenericHID.Hand.kRight), .1));
-        Robot.drivetrain.setThrottle(throttleRight, throttleLeft);
+        double rightX = OI.getJoystick(GenericHID.Hand.kRight, OI.Axis.X);
+        double rightY = OI.getJoystick(GenericHID.Hand.kRight, OI.Axis.Y);
+        double throttleLeft  = rightY + rightX;
+        double throttleRight = rightY - rightX;
+        Robot.drivetrain.setThrottle(throttleLeft, throttleRight);
     }
 
     @Override

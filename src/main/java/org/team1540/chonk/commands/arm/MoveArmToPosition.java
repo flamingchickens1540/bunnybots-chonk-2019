@@ -1,4 +1,4 @@
-package org.team1540.chonk.commands.drivetrain;
+package org.team1540.chonk.commands.arm;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.team1540.chonk.Robot;
@@ -14,12 +14,13 @@ public class MoveArmToPosition extends Command {
     }
 
     @Override
-    protected void execute() {
+    protected void initialize() {
+        System.out.println("Moving arm to position " + position);
         Robot.arm.setPosition(position);
     }
 
     @Override
     protected boolean isFinished() {
-        return (Math.abs(Robot.arm.getPosition() - position) <= Tuning.ARM_POSITION_TOLERANCE);
+        return Math.abs(Robot.arm.getPosition() - position) <= Tuning.ARM_POSITION_TOLERANCE;
     }
 }

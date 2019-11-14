@@ -1,9 +1,14 @@
 package org.team1540.chonk;
 
+import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1540.rooster.wrappers.ChickenTalon;
 import org.team1540.rooster.wrappers.ChickenVictor;
+import org.team1540.rooster.wrappers.RevBlinken;
 
 public class Hardware {
     public static ChickenTalon driveRightA;
@@ -12,20 +17,44 @@ public class Hardware {
     public static ChickenTalon driveLeftA;
     public static ChickenVictor driveLeftB;
 
-    public static ChickenTalon armR;
-    public static ChickenTalon armL;
+    public static AHRS navx;
+
+    public static RevBlinken leds;
+
+    public static NetworkTable limelight;
 
     static void initAll() {
+        System.out.println("Initializing Robot Hardware...");
+
         initDrive();
         initArm();
+        initNavX();
+        initLEDs();
+        initLimelight();
+
+        System.out.println("Robot Hardware Initialized");
     }
 
     static void initDrive() {
+        System.out.println("Initializing Drive...");
+
         driveRightA = new ChickenTalon(RobotMap.DRIVE_RIGHT_A);
         driveRightB = new ChickenVictor(RobotMap.DRIVE_RIGHT_B);
 
         driveLeftA = new ChickenTalon(RobotMap.DRIVE_LEFT_A);
         driveLeftB = new ChickenVictor(RobotMap.DRIVE_LEFT_B);
+
+        driveRightA.configFactoryDefault();
+        driveRightB.configFactoryDefault();
+
+        driveLeftA.configFactoryDefault();
+        driveLeftB.configFactoryDefault();
+
+        driveRightA.setBrake(true);
+        driveRightB.setBrake(false);
+
+        driveLeftA.setBrake(true);
+        driveLeftB.setBrake(false);
 
         driveRightB.follow(driveRightA);
 
@@ -33,13 +62,80 @@ public class Hardware {
     }
 
     static void initArm() {
-        armR = new ChickenTalon(RobotMap.ARM_R);
-        armL = new ChickenTalon(RobotMap.ARM_L);
+        System.out.println("Initializing Arm...");
 
-        armL.follow(armR);
+        armA = new ChickenTalon(RobotMap.ARM_A);
+        armB = new ChickenTalon(RobotMap.ARM_B);
 
-        armR.config_kP(0, Tuning.ARM_P);
-        armR.config_kI(0, Tuning.ARM_I);
-        armR.config_kD(0, Tuning.ARM_D);
+        armA.configFactoryDefault();
+        armB.configFactoryDefault();
+
+        armA.follow(armB);
+
+        armA.setInverted(true);
+        armB.setInverted(true);
+
+//        armL.configPeakOutputForward(.5);
+//        armL.configPeakOutputReverse(-.5);
+
+        armL.setSensorPhase(true);
     }
 }
+
+    static void initNavX() {
+        System.out.println("Initializing NavX...");
+
+        navx = new AHRS(RobotMap.NAVX);
+    }
+
+    static void initLEDs() {
+        System.out.println("Initializing LEDs...");
+
+        leds = new RevBlinken(RobotMap.LED);
+    }
+
+    static void initLimelight() {
+        System.out.println("Initializing Limelight");
+
+        limelight = NetworkTableInstance.getDefault().getTable("limelight-a");
+    }
+
+    static void setArmPID() {
+        System.out.println("Setting Arm PID...");
+
+        /*
+        armL.config_kP(0, SmartDashboard.getNumber("arm/p", Tuning.ARM_P));
+        armL.config_kI(0, SmartDashboard.getNumber("arm/i", Tuning.ARM_I));
+        armL.config_kD(0, SmartDashboard.getNumber("arm/d", Tuning.ARM_D));
+         */
+
+        armL.config_kP(0, Tuning.ARM_P);
+        armL.config_kI(0, Tuning.ARM_I);
+        armL.config_kD(0, Tuning.ARM_D);
+        armL.config_kF(0, Tuning.ARM_F);
+        armL.configMotionCruiseVelocity(Tuning.ARM_CRUISE_VAL);
+        armL.configMotionAcceleration(Tuning.ARM_ACCEL);
+    }
+
+    public static double getLimelightP() {
+        double p = SmartDashboard.getNumber("drive/limelightp", Tuning.LIMELIGHT_P);
+//        double p = Tuning.LIMELIGHT_P;
+        return p;
+    }
+    public static double getLimelightI() {
+        double i = SmartDashboard.getNumber("drive/limelighti", Tuning.LIMELIGHT_I);
+//        double i = Tuning.LIMELIGHT_I;
+        return i;
+    }
+    public static double getLimelightD() {
+        double d = SmartDashboard.getNumber("drive/limelightd", Tuning.LIMELIGHT_D);
+//        double d = Tuning.LIMELIGHT_D;
+        return d;
+    }
+}
+
+
+
+
+
+

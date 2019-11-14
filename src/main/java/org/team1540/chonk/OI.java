@@ -1,8 +1,12 @@
 package org.team1540.chonk;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.team1540.rooster.Utilities;
+import org.team1540.rooster.triggers.DPadAxis;
+import org.team1540.rooster.triggers.DPadButton;
 
 public class OI {
     //driver
@@ -22,6 +26,11 @@ public class OI {
     private static Button driverRightJoystickButton = new JoystickButton(driver, 10);
     private static Button driverLeftJoystickButton = new JoystickButton(driver, 9);
 
+    private static Button driverDpadUp = new DPadButton(driver, 0, DPadAxis.UP);
+    private static Button driverDpadDown = new DPadButton(driver, 0, DPadAxis.DOWN);
+    private static Button driverDpadLeft = new DPadButton(driver, 0, DPadAxis.LEFT);
+    private static Button driverDpadRight = new DPadButton(driver, 0, DPadAxis.RIGHT);
+
     //copilot
     public static XboxController copilot = new XboxController(1);
 
@@ -39,7 +48,25 @@ public class OI {
     private static Button copilotRightJoystickButton = new JoystickButton(copilot, 10);
     private static Button copilotLeftJoystickButton = new JoystickButton(copilot, 9);
 
-    public static void init() {
+    public enum Axis {
+        X,
+        Y
+    }
 
+    public static double getJoystick(GenericHID.Hand hand, Axis axis) {
+        if (axis == Axis.X) {
+            return Utilities.processDeadzone(OI.driver.getX(hand), .1);
+        } else {
+            return -Utilities.processDeadzone(OI.driver.getY(hand), .1);
+        }
+    }
+
+    public static double getTriggerThrottle() {
+        return Utilities.scale(Utilities.processDeadzone(OI.driver.getTriggerAxis(GenericHID.Hand.kRight) - OI.driver.getTriggerAxis(GenericHID.Hand.kLeft), .1), 2);
+    }
+
+    //bindings
+    public static void init() {
+        System.out.println("Initializing OI...");
     }
 }
