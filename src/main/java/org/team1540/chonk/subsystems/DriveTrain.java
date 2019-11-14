@@ -13,7 +13,7 @@ public class DriveTrain extends Subsystem {
 //        setDefaultCommand(new ArcadeDrive());
 //        setDefaultCommand(new ModifiedArcadeDrive());
 //        setDefaultCommand(new TankDrive());
-        setDefaultCommand(new PointDrive());
+        setDefaultCommand(new ModifiedArcadeDrive());
 
     }
 

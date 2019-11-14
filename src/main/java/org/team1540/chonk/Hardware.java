@@ -1,6 +1,8 @@
 package org.team1540.chonk;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,6 +22,9 @@ public class Hardware {
     public static ChickenTalon armR;
     public static ChickenTalon armL;
 
+    public static CANSparkMax elevatorL;
+    public static CANSparkMax elevatorR;
+
     public static AHRS navx;
 
     public static RevBlinken leds;
@@ -31,6 +36,7 @@ public class Hardware {
 
         initDrive();
         initArm();
+        initElevator();
         initNavX();
         initLEDs();
         initLimelight();
@@ -92,6 +98,22 @@ public class Hardware {
         armL.setSensorPhase(true);
     }
 
+    static void initElevator() {
+        System.out.println("Initializing Elevator...");
+
+        elevatorL = new CANSparkMax(RobotMap.ELEVATOR_L, CANSparkMaxLowLevel.MotorType.kBrushless);
+        elevatorR = new CANSparkMax(RobotMap.ELEVATOR_R, CANSparkMaxLowLevel.MotorType.kBrushless);
+
+        elevatorL.setIdleMode(CANSparkMax.IdleMode.kBrake);
+        elevatorR.setIdleMode(CANSparkMax.IdleMode.kBrake);
+
+        elevatorL.setInverted(true);
+
+        elevatorL.getPIDController().setOutputRange(-1, 1);
+
+        elevatorR.follow(elevatorL);
+    }
+
     static void initNavX() {
         System.out.println("Initializing NavX...");
 
@@ -107,7 +129,7 @@ public class Hardware {
     static void initLimelight() {
         System.out.println("Initializing Limelight");
 
-        limelight = NetworkTableInstance.getDefault().getTable("limelight");
+        limelight = NetworkTableInstance.getDefault().getTable("limelight-a");
     }
 
     static void setArmPID() {
@@ -125,6 +147,14 @@ public class Hardware {
         armL.config_kF(0, Tuning.ARM_F);
         armL.configMotionCruiseVelocity(Tuning.ARM_CRUISE_VAL);
         armL.configMotionAcceleration(Tuning.ARM_ACCEL);
+    }
+
+    static void setElevatorPID() {
+        System.out.println("Setting Elevator PID...");
+
+        elevatorL.getPIDController().setP(SmartDashboard.getNumber("elevator/p", Tuning.ELEVATOR_P));
+        elevatorL.getPIDController().setI(SmartDashboard.getNumber("elevator/i", Tuning.ELEVATOR_I));
+        elevatorL.getPIDController().setD(SmartDashboard.getNumber("elevator/d", Tuning.ELEVATOR_D));
     }
 
     public static double getLimelightP() {

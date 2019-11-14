@@ -15,12 +15,12 @@ public class MoveArmToPosition extends Command {
 
     @Override
     protected void initialize() {
-        System.out.println("Moving Arm to position " + position);
+        System.out.println("Moving arm to position " + position);
         Robot.arm.setPosition(position);
     }
 
     @Override
     protected boolean isFinished() {
-        return (Math.abs(Robot.arm.getPosition() - position) <= Tuning.ARM_POSITION_TOLERANCE);
+        return Math.abs(Robot.arm.getPosition() - position) <= Tuning.ARM_POSITION_TOLERANCE;
     }
 }

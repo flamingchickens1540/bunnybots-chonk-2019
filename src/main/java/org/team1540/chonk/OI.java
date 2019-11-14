@@ -6,11 +6,11 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.opencv.core.MatOfDouble;
 import org.team1540.chonk.commands.arm.MoveArmToPosition;
-import org.team1540.chonk.commands.drivetrain.ArcadeDrive;
-import org.team1540.chonk.commands.drivetrain.LineUp;
-import org.team1540.chonk.commands.drivetrain.ModifiedArcadeDrive;
-import org.team1540.chonk.commands.drivetrain.TankDrive;
+import org.team1540.chonk.commands.drivetrain.*;
+import org.team1540.chonk.commands.elevator.MoveElevatorToPosition;
 import org.team1540.rooster.Utilities;
+import org.team1540.rooster.triggers.DPadAxis;
+import org.team1540.rooster.triggers.DPadButton;
 import org.team1540.rooster.util.SimpleCommand;
 
 public class OI {
@@ -29,6 +29,11 @@ public class OI {
 
     private static Button driverRightJoystickButton = new JoystickButton(driver, 10);
     private static Button driverLeftJoystickButton = new JoystickButton(driver, 9);
+
+    private static Button driverDpadUp = new DPadButton(driver, 0, DPadAxis.UP);
+    private static Button driverDpadDown = new DPadButton(driver, 0, DPadAxis.DOWN);
+    private static Button driverDpadLeft = new DPadButton(driver, 0, DPadAxis.LEFT);
+    private static Button driverDpadRight = new DPadButton(driver, 0, DPadAxis.RIGHT);
 
     //copilot
     public static XboxController copilot = new XboxController(1);
@@ -67,9 +72,12 @@ public class OI {
     //bindings
     public static void init() {
         System.out.println("Initializing OI...");
-        driverXButton.toggleWhenPressed(new ArcadeDrive());
+        driverXButton.toggleWhenPressed(new PointDrive());
         driverAButton.whenPressed(new MoveArmToPosition(35000));
         driverYButton.whenPressed(new SimpleCommand("ZeroNavX", Hardware.navx::zeroYaw));
-        driverAButton.whenPressed(new LineUp());
+        driverBButton.whileHeld(new LineUp());
+        driverDpadDown.whenPressed(new MoveElevatorToPosition(0));
+        driverDpadLeft.whenPressed(new MoveElevatorToPosition(16));
+        driverDpadUp.whenPressed(new MoveElevatorToPosition(28));
     }
 }
