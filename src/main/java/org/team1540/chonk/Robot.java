@@ -1,22 +1,26 @@
 package org.team1540.chonk;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1540.chonk.subsystems.Arm;
+import org.team1540.chonk.subsystems.Claw;
 import org.team1540.chonk.subsystems.DriveTrain;
 
 public class Robot extends TimedRobot {
 
     public static DriveTrain drivetrain;
     public static Arm arm;
+    public static Claw claw;
 
     @Override
     public void robotInit() {
         System.out.println("Robot Initializing...");
         drivetrain = new DriveTrain();
         arm = new Arm();
+        claw = new Claw();
         Hardware.initAll();
         OI.init();
 
@@ -38,14 +42,10 @@ public class Robot extends TimedRobot {
     }
 
     @Override
-    public void teleopPeriodic() {
-
-    }
+    public void teleopPeriodic() { }
 
     @Override
     public void robotPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("arm/encoder", arm.getPosition());
-        SmartDashboard.putNumber("arm/velocity", arm.getVelocity());
     }
 }

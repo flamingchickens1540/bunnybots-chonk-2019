@@ -1,10 +1,10 @@
 package org.team1540.chonk;
 
 import com.kauailabs.navx.frc.AHRS;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1540.rooster.wrappers.ChickenTalon;
 import org.team1540.rooster.wrappers.ChickenVictor;
@@ -18,6 +18,9 @@ public class Hardware {
     public static ChickenVictor driveLeftB;
 
     public static ChickenTalon arm;
+    public static DigitalInput armLimitSwitch;
+
+    public static Solenoid claw;
 
     public static AHRS navx;
 
@@ -30,6 +33,7 @@ public class Hardware {
 
         initDrive();
         initArm();
+        initClaw();
         initNavX();
         initLEDs();
         initLimelight();
@@ -70,6 +74,12 @@ public class Hardware {
         arm.setInverted(true);
         arm.setSensorPhase(true);
 //        arm.configPeakOutputForward(.5);
+
+        armLimitSwitch = new DigitalInput(RobotMap.ARM_LIMIT_SWITCH);
+    }
+
+    static void initClaw() {
+        claw = new Solenoid(RobotMap.CLAW);
     }
 
     static void initNavX() {

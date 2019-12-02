@@ -10,7 +10,7 @@ import org.team1540.rooster.triggers.DPadButton;
 
 public class OI {
     //driver
-    public static XboxController driver = new XboxController(0);
+    private static XboxController driver = new XboxController(0);
 
     private static Button driverAButton = new JoystickButton(driver, 1);
     private static Button driverBButton = new JoystickButton(driver, 2);
@@ -32,7 +32,7 @@ public class OI {
     private static Button driverDpadRight = new DPadButton(driver, 0, DPadAxis.RIGHT);
 
     //copilot
-    public static XboxController copilot = new XboxController(1);
+    private static XboxController copilot = new XboxController(1);
 
     private static Button copilotAButton = new JoystickButton(copilot, 1);
     private static Button copilotBButton = new JoystickButton(copilot, 2);
