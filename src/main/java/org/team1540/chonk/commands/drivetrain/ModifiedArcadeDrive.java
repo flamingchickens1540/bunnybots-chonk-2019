@@ -15,16 +15,14 @@ public class ModifiedArcadeDrive extends Command {
     private double positivePart(double input) {
         if (input <= 0) {
             return 0;
-        }
-        else {
+        } else {
             return input;
         }
     }
     private double negativePart(double input) {
         if (input >= 0) {
             return 0;
-        }
-        else {
+        } else {
             return input;
         }
     }
@@ -37,8 +35,8 @@ public class ModifiedArcadeDrive extends Command {
     @Override
     protected void execute() {
         double triggerThrottle = OI.getTriggerThrottle();
-        double leftY = OI.getJoystick(GenericHID.Hand.kLeft, OI.Axis.Y);
-        double rightX = OI.getJoystick(GenericHID.Hand.kRight, OI.Axis.X);
+        double leftY = OI.getJoystick(OI.driver, GenericHID.Hand.kLeft, OI.Axis.Y);
+        double rightX = OI.getJoystick(OI.driver, GenericHID.Hand.kRight, OI.Axis.X);
         double throttleLeft = leftY + (leftY * negativePart(rightX)) + triggerThrottle;
         double throttleRight = leftY - (leftY * positivePart(rightX)) - triggerThrottle;
         Robot.drivetrain.setThrottle(throttleLeft, throttleRight);

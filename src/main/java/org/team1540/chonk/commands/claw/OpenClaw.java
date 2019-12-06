@@ -4,13 +4,14 @@ import edu.wpi.first.wpilibj.command.TimedCommand;
 import org.team1540.chonk.Robot;
 import org.team1540.chonk.Tuning;
 
-public class Close extends TimedCommand {
-    public Close() {
+public class OpenClaw extends TimedCommand {
+    public OpenClaw() {
         super(Tuning.CLAW_MOVE_TIME);
+        requires(Robot.claw);
     }
 
     @Override
     protected void initialize() {
-        Robot.claw.set(true);
+        Robot.claw.set(false);
     }
 }

@@ -19,8 +19,8 @@ public class ArcadeDrive extends Command {
 
     @Override
     protected void execute() {
-        double rightX = OI.getJoystick(GenericHID.Hand.kRight, OI.Axis.X);
-        double rightY = OI.getJoystick(GenericHID.Hand.kRight, OI.Axis.Y);
+        double rightX = OI.getJoystick(OI.driver, GenericHID.Hand.kRight, OI.Axis.X);
+        double rightY = OI.getJoystick(OI.driver, GenericHID.Hand.kRight, OI.Axis.Y);
         double throttleLeft  = rightY + rightX;
         double throttleRight = rightY - rightX;
         Robot.drivetrain.setThrottle(throttleLeft, throttleRight);

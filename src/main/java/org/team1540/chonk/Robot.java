@@ -18,10 +18,11 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
         System.out.println("Robot Initializing...");
+
+        Hardware.initAll();
         drivetrain = new DriveTrain();
         arm = new Arm();
-        claw = new Claw();
-        Hardware.initAll();
+//        claw = new Claw();
         OI.init();
 
         SmartDashboard.putNumber("drive/pointp", Tuning.POINT_DRIVE_P);
@@ -42,7 +43,7 @@ public class Robot extends TimedRobot {
     }
 
     @Override
-    public void teleopPeriodic() { }
+    public void teleopPeriodic() {}
 
     @Override
     public void robotPeriodic() {

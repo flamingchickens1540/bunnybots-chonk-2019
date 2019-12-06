@@ -20,8 +20,8 @@ public class TankDrive extends Command {
     @Override
     protected void execute() {
         double triggerThrottle = OI.getTriggerThrottle();
-        double throttleLeft = triggerThrottle + OI.getJoystick(GenericHID.Hand.kLeft, OI.Axis.Y);
-        double throttleRight = triggerThrottle + OI.getJoystick(GenericHID.Hand.kRight, OI.Axis.Y);
+        double throttleLeft = triggerThrottle + OI.getJoystick(OI.driver, GenericHID.Hand.kLeft, OI.Axis.Y);
+        double throttleRight = triggerThrottle + OI.getJoystick(OI.driver, GenericHID.Hand.kRight, OI.Axis.Y);
         Robot.drivetrain.setThrottle(throttleLeft, throttleRight);
     }
 

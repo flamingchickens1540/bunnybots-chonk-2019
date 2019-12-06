@@ -9,6 +9,9 @@ public class Tuning {
     public static double LIMELIGHT_I = 0;
     public static double LIMELIGHT_D = 5;
 
+    public static double LIMELIGHT_HEIGHT = 0;
+    public static double LIMELIGHT_FORWARD_TOLERANCE = 0;
+
     public static final double ARM_P = .5;
     public static final double ARM_I = 0;
     public static final double ARM_D = 0;
@@ -19,5 +22,10 @@ public class Tuning {
     public static final double ARM_TICKS_PER_DEGREE = 1;
     public static final double ARM_POSITION_TOLERANCE = 5;
 
+    public static final double ARM_BIN_POSITION = 90;
+    public static final double BIN_THROW_WAIT = 0.25;
+    public static final double DUMP_BIN_WAIT_TIME = 0.5;
     public static final double CLAW_MOVE_TIME = 0.5;
+    public static final double FRONT_ULTRASONIC_BIN_DISTANCE = 1;
+    public static final double FRONT_ULTRASONIC_THRESHOLD = 0.25;
 }

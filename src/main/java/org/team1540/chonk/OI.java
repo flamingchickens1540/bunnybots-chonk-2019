@@ -4,13 +4,16 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
+import org.team1540.chonk.commands.arm.MoveArmToPosition;
+import org.team1540.chonk.commands.claw.GrabBinSequence;
 import org.team1540.rooster.Utilities;
 import org.team1540.rooster.triggers.DPadAxis;
 import org.team1540.rooster.triggers.DPadButton;
 
 public class OI {
     //driver
-    private static XboxController driver = new XboxController(0);
+    public static XboxController driver = new XboxController(0);
 
     private static Button driverAButton = new JoystickButton(driver, 1);
     private static Button driverBButton = new JoystickButton(driver, 2);
@@ -32,7 +35,7 @@ public class OI {
     private static Button driverDpadRight = new DPadButton(driver, 0, DPadAxis.RIGHT);
 
     //copilot
-    private static XboxController copilot = new XboxController(1);
+    public static XboxController copilot = new XboxController(1);
 
     private static Button copilotAButton = new JoystickButton(copilot, 1);
     private static Button copilotBButton = new JoystickButton(copilot, 2);
@@ -58,11 +61,11 @@ public class OI {
         Y
     }
 
-    public static double getJoystick(GenericHID.Hand hand, Axis axis) {
+    public static double getJoystick(XboxController controller, GenericHID.Hand hand, Axis axis) {
         if (axis == Axis.X) {
-            return Utilities.processDeadzone(OI.driver.getX(hand), .1);
+            return Utilities.processDeadzone(controller.getX(hand), .1);
         } else {
-            return -Utilities.processDeadzone(OI.driver.getY(hand), .1);
+            return -Utilities.processDeadzone(controller.getY(hand), .1);
         }
     }
 
@@ -70,8 +73,17 @@ public class OI {
         return Utilities.scale(Utilities.processDeadzone(OI.driver.getTriggerAxis(GenericHID.Hand.kRight) - OI.driver.getTriggerAxis(GenericHID.Hand.kLeft), .1), 2);
     }
 
+    public static boolean getOverrideButtonPressed() {
+        return copilotAButton.get();
+    }
+
     //bindings
     public static void init() {
         System.out.println("Initializing OI...");
+
+        driverAButton.whenPressed(new MoveArmToPosition(1000));
+//        Command grabBinCommand = new GrabBinSequence();
+//        driverXButton.whenPressed(grabBinCommand);
+//        driverBButton.cancelWhenPressed(grabBinCommand);
     }
 }

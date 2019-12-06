@@ -3,6 +3,7 @@ package org.team1540.chonk;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -12,15 +13,17 @@ import org.team1540.rooster.wrappers.RevBlinken;
 
 public class Hardware {
     public static ChickenTalon driveRightA;
-    public static ChickenVictor driveRightB;
+    public static ChickenTalon driveRightB;
 
     public static ChickenTalon driveLeftA;
-    public static ChickenVictor driveLeftB;
+    public static ChickenTalon driveLeftB;
 
     public static ChickenTalon arm;
     public static DigitalInput armLimitSwitch;
 
     public static Solenoid claw;
+
+    public static AnalogInput frontUltrasonic;
 
     public static AHRS navx;
 
@@ -33,10 +36,11 @@ public class Hardware {
 
         initDrive();
         initArm();
-        initClaw();
+//        initClaw();
+//        initUltrasonic();
         initNavX();
-        initLEDs();
-        initLimelight();
+//        initLEDs();
+//        initLimelight();
 
         System.out.println("Robot Hardware Initialized");
     }
@@ -45,10 +49,10 @@ public class Hardware {
         System.out.println("Initializing Drive...");
 
         driveRightA = new ChickenTalon(RobotMap.DRIVE_RIGHT_A);
-        driveRightB = new ChickenVictor(RobotMap.DRIVE_RIGHT_B);
+        driveRightB = new ChickenTalon(RobotMap.DRIVE_RIGHT_B);
 
         driveLeftA = new ChickenTalon(RobotMap.DRIVE_LEFT_A);
-        driveLeftB = new ChickenVictor(RobotMap.DRIVE_LEFT_B);
+        driveLeftB = new ChickenTalon(RobotMap.DRIVE_LEFT_B);
 
         driveRightA.configFactoryDefault();
         driveRightB.configFactoryDefault();
@@ -80,6 +84,10 @@ public class Hardware {
 
     static void initClaw() {
         claw = new Solenoid(RobotMap.CLAW);
+    }
+
+    static void initUltrasonic() {
+        frontUltrasonic = new AnalogInput(RobotMap.FRONT_ULTRASONIC);
     }
 
     static void initNavX() {
@@ -118,19 +126,16 @@ public class Hardware {
     }
 
     public static double getLimelightP() {
-        double p = SmartDashboard.getNumber("drive/limelightp", Tuning.LIMELIGHT_P);
-//        double p = Tuning.LIMELIGHT_P;
-        return p;
+        return SmartDashboard.getNumber("drive/limelightp", Tuning.LIMELIGHT_P);
+//        return Tuning.LIMELIGHT_P;
     }
     public static double getLimelightI() {
-        double i = SmartDashboard.getNumber("drive/limelighti", Tuning.LIMELIGHT_I);
-//        double i = Tuning.LIMELIGHT_I;
-        return i;
+        return SmartDashboard.getNumber("drive/limelighti", Tuning.LIMELIGHT_I);
+//        return Tuning.LIMELIGHT_I;
     }
     public static double getLimelightD() {
-        double d = SmartDashboard.getNumber("drive/limelightd", Tuning.LIMELIGHT_D);
-//        double d = Tuning.LIMELIGHT_D;
-        return d;
+        return SmartDashboard.getNumber("drive/limelightd", Tuning.LIMELIGHT_D);
+//        return Tuning.LIMELIGHT_D;
     }
 }
 
