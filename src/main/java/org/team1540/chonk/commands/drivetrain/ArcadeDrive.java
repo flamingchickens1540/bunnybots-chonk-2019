@@ -4,12 +4,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 import org.team1540.chonk.OI;
 import org.team1540.chonk.Robot;
-import org.team1540.rooster.Utilities;
 
 public class ArcadeDrive extends Command {
 
     public ArcadeDrive() {
-        requires(Robot.drivetrain);
+        requires(Robot.driveTrain);
     }
 
     @Override
@@ -23,7 +22,7 @@ public class ArcadeDrive extends Command {
         double rightY = OI.getJoystick(OI.driver, GenericHID.Hand.kRight, OI.Axis.Y);
         double throttleLeft  = rightY + rightX;
         double throttleRight = rightY - rightX;
-        Robot.drivetrain.setThrottle(throttleLeft, throttleRight);
+        Robot.driveTrain.setThrottle(throttleLeft, throttleRight);
     }
 
     @Override

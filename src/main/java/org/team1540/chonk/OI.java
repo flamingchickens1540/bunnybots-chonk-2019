@@ -6,10 +6,15 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import org.team1540.chonk.commands.arm.MoveArmToPosition;
+import org.team1540.chonk.commands.bunnyarm.BunnyArmDown;
+import org.team1540.chonk.commands.bunnyarm.BunnyArmUp;
+import org.team1540.chonk.commands.claw.CloseClaw;
 import org.team1540.chonk.commands.claw.GrabBinSequence;
+import org.team1540.chonk.commands.claw.OpenClaw;
 import org.team1540.rooster.Utilities;
 import org.team1540.rooster.triggers.DPadAxis;
 import org.team1540.rooster.triggers.DPadButton;
+import org.team1540.rooster.util.SimpleCommand;
 
 public class OI {
     //driver
@@ -73,7 +78,7 @@ public class OI {
         return Utilities.scale(Utilities.processDeadzone(OI.driver.getTriggerAxis(GenericHID.Hand.kRight) - OI.driver.getTriggerAxis(GenericHID.Hand.kLeft), .1), 2);
     }
 
-    public static boolean getOverrideButtonPressed() {
+    public static boolean getBinOverrideButtonPressed() {
         return copilotAButton.get();
     }
 
@@ -81,7 +86,11 @@ public class OI {
     public static void init() {
         System.out.println("Initializing OI...");
 
-        driverAButton.whenPressed(new MoveArmToPosition(1000));
+        copilotAButton.whenPressed(new BunnyArmDown());
+        copilotAButton.whenReleased(new BunnyArmUp());
+        copilotBButton.whenPressed(new CloseClaw());
+        copilotBButton.whenReleased(new OpenClaw());
+//        driverAButton.whenPressed(new MoveArmToPosition(1000));
 //        Command grabBinCommand = new GrabBinSequence();
 //        driverXButton.whenPressed(grabBinCommand);
 //        driverBButton.cancelWhenPressed(grabBinCommand);

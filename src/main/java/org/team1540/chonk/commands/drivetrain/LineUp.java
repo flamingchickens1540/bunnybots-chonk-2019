@@ -8,7 +8,7 @@ public class LineUp extends PIDCommand {
 
     public LineUp() {
         super(Hardware.getLimelightP(), Hardware.getLimelightI(), Hardware.getLimelightD());
-        requires(Robot.drivetrain);
+        requires(Robot.driveTrain);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class LineUp extends PIDCommand {
 
     @Override
     protected void usePIDOutput(double output) {
-        Robot.drivetrain.setThrottle(-output, output);
+        Robot.driveTrain.setThrottle(-output, output);
     }
 
     @Override

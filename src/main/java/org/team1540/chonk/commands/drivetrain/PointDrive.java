@@ -8,7 +8,6 @@ import org.team1540.chonk.OI;
 import org.team1540.chonk.Robot;
 import org.team1540.chonk.Tuning;
 import org.team1540.rooster.Utilities;
-import org.team1540.rooster.wrappers.RevBlinken;
 
 import static org.team1540.chonk.utils.SignedAngleError.signedAngleError;
 
@@ -19,7 +18,7 @@ public class PointDrive extends Command {
     private double lastAngle;
 
     public PointDrive() {
-        requires(Robot.drivetrain);
+        requires(Robot.driveTrain);
     }
 
     @Override
@@ -50,7 +49,7 @@ public class PointDrive extends Command {
         lastError = error;
 
         double leftY = OI.getJoystick(OI.driver, GenericHID.Hand.kLeft, OI.Axis.Y);
-        Robot.drivetrain.setThrottle(-output + leftY, output + leftY);
+        Robot.driveTrain.setThrottle(-output + leftY, output + leftY);
         SmartDashboard.putNumber("drive/dest", destAngle);
         SmartDashboard.putNumber("drive/current", currentAngle);
         SmartDashboard.putNumber("drive/signedangleerror", error);

@@ -4,12 +4,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 import org.team1540.chonk.OI;
 import org.team1540.chonk.Robot;
-import org.team1540.rooster.Utilities;
 
 public class TankDrive extends Command {
 
     public TankDrive() {
-        requires(Robot.drivetrain);
+        requires(Robot.driveTrain);
     }
 
     @Override
@@ -22,7 +21,7 @@ public class TankDrive extends Command {
         double triggerThrottle = OI.getTriggerThrottle();
         double throttleLeft = triggerThrottle + OI.getJoystick(OI.driver, GenericHID.Hand.kLeft, OI.Axis.Y);
         double throttleRight = triggerThrottle + OI.getJoystick(OI.driver, GenericHID.Hand.kRight, OI.Axis.Y);
-        Robot.drivetrain.setThrottle(throttleLeft, throttleRight);
+        Robot.driveTrain.setThrottle(throttleLeft, throttleRight);
     }
 
     @Override

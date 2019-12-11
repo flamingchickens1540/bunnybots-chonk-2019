@@ -1,28 +1,31 @@
 package org.team1540.chonk;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1540.chonk.subsystems.Arm;
+import org.team1540.chonk.subsystems.BunnyArm;
 import org.team1540.chonk.subsystems.Claw;
 import org.team1540.chonk.subsystems.DriveTrain;
 
 public class Robot extends TimedRobot {
 
-    public static DriveTrain drivetrain;
+    public static DriveTrain driveTrain;
     public static Arm arm;
     public static Claw claw;
+    public static BunnyArm bunnyArm;
 
     @Override
     public void robotInit() {
         System.out.println("Robot Initializing...");
 
         Hardware.initAll();
-        drivetrain = new DriveTrain();
+        driveTrain = new DriveTrain();
         arm = new Arm();
-//        claw = new Claw();
+        claw = new Claw();
+        bunnyArm = new BunnyArm();
         OI.init();
 
         SmartDashboard.putNumber("drive/pointp", Tuning.POINT_DRIVE_P);
@@ -43,7 +46,9 @@ public class Robot extends TimedRobot {
     }
 
     @Override
-    public void teleopPeriodic() {}
+    public void teleopPeriodic() {
+        Hardware.arm.set(ControlMode.PercentOutput, OI.getJoystick(OI.copilot, GenericHID.Hand.kRight, OI.Axis.Y));
+    }
 
     @Override
     public void robotPeriodic() {

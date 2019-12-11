@@ -14,7 +14,7 @@ public class MoveForwardLineUp extends PIDCommand  {
 
     public MoveForwardLineUp(double maxDistance) {
         super(Hardware.getLimelightP(), Hardware.getLimelightI(), Hardware.getLimelightD());
-        requires(Robot.drivetrain);
+        requires(Robot.driveTrain);
         this.maxDistance = maxDistance;
     }
 
@@ -41,7 +41,7 @@ public class MoveForwardLineUp extends PIDCommand  {
 
     @Override
     protected void usePIDOutput(double output) {
-        Robot.drivetrain.setThrottle(-output, output);
+        Robot.driveTrain.setThrottle(-output, output);
     }
 
     @Override

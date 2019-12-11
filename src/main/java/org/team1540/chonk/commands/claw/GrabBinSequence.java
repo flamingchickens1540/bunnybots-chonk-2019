@@ -15,7 +15,7 @@ public class GrabBinSequence extends CommandGroup {
 //        addSequential(new WaitForUltrasonicOrOverride());
         addSequential(new WaitUntilCommand(() -> {
             boolean ultrasonicTriggered = Math.abs(Hardware.frontUltrasonic.getValue() - Tuning.FRONT_ULTRASONIC_BIN_DISTANCE) <= Tuning.FRONT_ULTRASONIC_THRESHOLD;
-            boolean overridePressed = OI.getOverrideButtonPressed();
+            boolean overridePressed = OI.getBinOverrideButtonPressed();
             return ultrasonicTriggered || overridePressed;
         }));
         addSequential(new CloseClaw());

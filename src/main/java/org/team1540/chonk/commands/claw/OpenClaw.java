@@ -12,6 +12,7 @@ public class OpenClaw extends TimedCommand {
 
     @Override
     protected void initialize() {
+        System.out.println("Opening Claw");
         Robot.claw.set(false);
     }
 }

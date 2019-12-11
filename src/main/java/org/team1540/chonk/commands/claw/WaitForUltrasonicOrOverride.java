@@ -9,7 +9,7 @@ public class WaitForUltrasonicOrOverride extends Command {
     @Override
     protected boolean isFinished() {
         boolean ultrasonicTriggered = Math.abs(Hardware.frontUltrasonic.getValue() - Tuning.FRONT_ULTRASONIC_BIN_DISTANCE) <= Tuning.FRONT_ULTRASONIC_THRESHOLD;
-        boolean overridePressed = OI.getOverrideButtonPressed();
+        boolean overridePressed = OI.getBinOverrideButtonPressed();
         return ultrasonicTriggered || overridePressed;
     }
 }

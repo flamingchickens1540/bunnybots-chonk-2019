@@ -4,12 +4,11 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 import org.team1540.chonk.OI;
 import org.team1540.chonk.Robot;
-import org.team1540.rooster.Utilities;
 
 public class ModifiedArcadeDrive extends Command {
 
     public ModifiedArcadeDrive() {
-        requires(Robot.drivetrain);
+        requires(Robot.driveTrain);
     }
 
     private double positivePart(double input) {
@@ -39,7 +38,7 @@ public class ModifiedArcadeDrive extends Command {
         double rightX = OI.getJoystick(OI.driver, GenericHID.Hand.kRight, OI.Axis.X);
         double throttleLeft = leftY + (leftY * negativePart(rightX)) + triggerThrottle;
         double throttleRight = leftY - (leftY * positivePart(rightX)) - triggerThrottle;
-        Robot.drivetrain.setThrottle(throttleLeft, throttleRight);
+        Robot.driveTrain.setThrottle(throttleLeft, throttleRight);
     }
 
     @Override

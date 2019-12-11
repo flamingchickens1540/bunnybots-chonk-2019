@@ -13,7 +13,9 @@ public class RobotMap {
     public static final int ARM = 5;
     public static final int ARM_LIMIT_SWITCH = 0;
 
-    public static final int CLAW = 0;
+    public static final int CLAW = 1;
+
+    public static final int BUNNY_ARM = 0;
 
     public static final int FRONT_ULTRASONIC = 0;
 

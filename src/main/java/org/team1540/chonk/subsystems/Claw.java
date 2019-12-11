@@ -7,10 +7,10 @@ import org.team1540.chonk.commands.claw.CloseClaw;
 public class Claw extends Subsystem {
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new CloseClaw());
+//        setDefaultCommand(new CloseClaw());
     }
 
     public void set(boolean state) {
-        Hardware.claw.set(state);
+        Hardware.claw.set(!state);
     }
 }

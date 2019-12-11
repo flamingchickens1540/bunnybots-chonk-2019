@@ -4,6 +4,7 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,6 +24,10 @@ public class Hardware {
 
     public static Solenoid claw;
 
+    public static Solenoid bunnyArm;
+
+    public static Compressor compressor;
+
     public static AnalogInput frontUltrasonic;
 
     public static AHRS navx;
@@ -36,8 +41,10 @@ public class Hardware {
 
         initDrive();
         initArm();
-//        initClaw();
+        initClaw();
+        initBunnyArm();
 //        initUltrasonic();
+        initCompressor();
         initNavX();
 //        initLEDs();
 //        initLimelight();
@@ -86,8 +93,17 @@ public class Hardware {
         claw = new Solenoid(RobotMap.CLAW);
     }
 
+    static void initBunnyArm() {
+        bunnyArm = new Solenoid(RobotMap.BUNNY_ARM);
+    }
+
     static void initUltrasonic() {
         frontUltrasonic = new AnalogInput(RobotMap.FRONT_ULTRASONIC);
+    }
+
+    static void initCompressor() {
+        compressor = new Compressor();
+        compressor.start();
     }
 
     static void initNavX() {
