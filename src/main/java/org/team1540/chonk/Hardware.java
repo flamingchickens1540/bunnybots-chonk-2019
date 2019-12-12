@@ -3,10 +3,7 @@ package org.team1540.chonk;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1540.rooster.wrappers.ChickenTalon;
 import org.team1540.rooster.wrappers.ChickenVictor;
@@ -87,6 +84,17 @@ public class Hardware {
 //        arm.configPeakOutputForward(.5);
 
         armLimitSwitch = new DigitalInput(RobotMap.ARM_LIMIT_SWITCH);
+//        armLimitSwitch.enableInterrupts();
+//        armLimitSwitch.requestInterrupts(new InterruptHandlerFunction<>() {
+//            @Override
+//            public void interruptFired(int i, Object o) {
+//                System.out.println("Arm limit switch changed to " + i);
+//                Hardware.arm.setSelectedSensorPosition(0);
+//            }
+//        });
+//        armLimitSwitch.setUpSourceEdge(true, false);
+
+        System.out.println("initialized arm limit switch in port " + RobotMap.ARM_LIMIT_SWITCH);
     }
 
     static void initClaw() {
@@ -154,9 +162,3 @@ public class Hardware {
 //        return Tuning.LIMELIGHT_D;
     }
 }
-
-
-
-
-
-

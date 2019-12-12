@@ -47,7 +47,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopPeriodic() {
-        Hardware.arm.set(ControlMode.PercentOutput, OI.getJoystick(OI.copilot, GenericHID.Hand.kRight, OI.Axis.Y));
+//        Hardware.arm.set(ControlMode.PercentOutput, OI.getJoystick(OI.copilot, GenericHID.Hand.kLeft, OI.Axis.Y));
     }
 
     @Override

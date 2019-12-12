@@ -90,7 +90,7 @@ public class OI {
         copilotAButton.whenReleased(new BunnyArmUp());
         copilotBButton.whenPressed(new CloseClaw());
         copilotBButton.whenReleased(new OpenClaw());
-//        driverAButton.whenPressed(new MoveArmToPosition(1000));
+        driverAButton.whenPressed(new MoveArmToPosition(1000));
 //        Command grabBinCommand = new GrabBinSequence();
 //        driverXButton.whenPressed(grabBinCommand);
 //        driverBButton.cancelWhenPressed(grabBinCommand);

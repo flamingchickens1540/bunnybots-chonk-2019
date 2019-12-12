@@ -9,15 +9,6 @@ import org.team1540.chonk.Hardware;
 import org.team1540.chonk.Tuning;
 
 public class Arm extends Subsystem {
-    public Arm() {
-        Hardware.armLimitSwitch.requestInterrupts(new InterruptHandlerFunction<>() {
-            @Override
-            public void interruptFired(int i, Object o) {
-                Hardware.arm.setSelectedSensorPosition(0);
-                System.out.println("Arm limit switch hit");
-            }
-        });
-    }
     @Override
     protected void initDefaultCommand() {}
 
@@ -30,6 +21,8 @@ public class Arm extends Subsystem {
     public void periodic() {
         SmartDashboard.putNumber("arm/encoder", getPosition());
         SmartDashboard.putNumber("arm/velocity", getVelocity());
+//        SmartDashboard.putNumber("arm/limitswitch", Hardware.armLimitSwitch.get() ? 1 : 0);
+        System.out.println(Hardware.armLimitSwitch.get());
     }
 
     public double getPosition() {

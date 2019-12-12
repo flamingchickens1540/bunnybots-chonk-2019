@@ -9,9 +9,8 @@ public class RobotMap {
     public static final int DRIVE_RIGHT_A = 3;
     public static final int DRIVE_RIGHT_B = 4;
 
-
     public static final int ARM = 5;
-    public static final int ARM_LIMIT_SWITCH = 0;
+    public static final int ARM_LIMIT_SWITCH = 5;
 
     public static final int CLAW = 1;
 
