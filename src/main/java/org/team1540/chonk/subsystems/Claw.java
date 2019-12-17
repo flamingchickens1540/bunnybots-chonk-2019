@@ -11,6 +11,6 @@ public class Claw extends Subsystem {
     }
 
     public void set(boolean state) {
-        Hardware.claw.set(!state);
+        Hardware.claw.set(state);
     }
 }

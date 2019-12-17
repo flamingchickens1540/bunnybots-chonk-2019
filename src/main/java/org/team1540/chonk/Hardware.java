@@ -1,5 +1,6 @@
 package org.team1540.chonk;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -82,17 +83,18 @@ public class Hardware {
         arm.setInverted(true);
         arm.setSensorPhase(true);
 //        arm.configPeakOutputForward(.5);
+        arm.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
 
         armLimitSwitch = new DigitalInput(RobotMap.ARM_LIMIT_SWITCH);
-//        armLimitSwitch.enableInterrupts();
-//        armLimitSwitch.requestInterrupts(new InterruptHandlerFunction<>() {
-//            @Override
-//            public void interruptFired(int i, Object o) {
-//                System.out.println("Arm limit switch changed to " + i);
-//                Hardware.arm.setSelectedSensorPosition(0);
-//            }
-//        });
-//        armLimitSwitch.setUpSourceEdge(true, false);
+        armLimitSwitch.requestInterrupts(new InterruptHandlerFunction<>() {
+            @Override
+            public void interruptFired(int i, Object o) {
+                System.out.println("Arm limit switch hit");
+                Hardware.arm.setSelectedSensorPosition(Tuning.ARM_ZERO_POSITION);
+            }
+        });
+        armLimitSwitch.enableInterrupts();
+        armLimitSwitch.setUpSourceEdge(false, true);
 
         System.out.println("initialized arm limit switch in port " + RobotMap.ARM_LIMIT_SWITCH);
     }
@@ -135,18 +137,17 @@ public class Hardware {
     static void setArmPID() {
         System.out.println("Setting Arm PID...");
 
-        /*
-        armL.config_kP(0, SmartDashboard.getNumber("arm/p", Tuning.ARM_P));
-        armL.config_kI(0, SmartDashboard.getNumber("arm/i", Tuning.ARM_I));
-        armL.config_kD(0, SmartDashboard.getNumber("arm/d", Tuning.ARM_D));
-         */
+        arm.config_kP(0, SmartDashboard.getNumber("arm/p", Tuning.ARM_P));
+        arm.config_kI(0, SmartDashboard.getNumber("arm/i", Tuning.ARM_I));
+        arm.config_kD(0, SmartDashboard.getNumber("arm/d", Tuning.ARM_D));
 
-        arm.config_kP(0, Tuning.ARM_P);
-        arm.config_kI(0, Tuning.ARM_I);
-        arm.config_kD(0, Tuning.ARM_D);
-        arm.config_kF(0, Tuning.ARM_F);
-        arm.configMotionCruiseVelocity(Tuning.ARM_CRUISE_VAL);
-        arm.configMotionAcceleration(Tuning.ARM_ACCEL);
+//        arm.config_kP(0, Tuning.ARM_P);
+//        arm.config_kI(0, Tuning.ARM_I);
+//        arm.config_kD(0, Tuning.ARM_D);
+
+//        arm.config_kF(0, Tuning.ARM_F);
+//        arm.configMotionCruiseVelocity(Tuning.ARM_CRUISE_VAL);
+//        arm.configMotionAcceleration(Tuning.ARM_ACCEL);
     }
 
     public static double getLimelightP() {

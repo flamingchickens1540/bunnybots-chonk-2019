@@ -20,46 +20,46 @@ public class OI {
     //driver
     public static XboxController driver = new XboxController(0);
 
-    private static Button driverAButton = new JoystickButton(driver, 1);
-    private static Button driverBButton = new JoystickButton(driver, 2);
-    private static Button driverXButton = new JoystickButton(driver, 3);
-    private static Button driverYButton = new JoystickButton(driver, 4);
+    public static Button driverAButton = new JoystickButton(driver, 1);
+    public static Button driverBButton = new JoystickButton(driver, 2);
+    public static Button driverXButton = new JoystickButton(driver, 3);
+    public static Button driverYButton = new JoystickButton(driver, 4);
 
-    private static Button driverRB = new JoystickButton(driver, 6);
-    private static Button driverLB = new JoystickButton(driver, 5);
+    public static Button driverRB = new JoystickButton(driver, 6);
+    public static Button driverLB = new JoystickButton(driver, 5);
 
-    private static Button driverBackButton = new JoystickButton(driver, 7);
-    private static Button driverStartButton = new JoystickButton(driver, 8);
+    public static Button driverBackButton = new JoystickButton(driver, 7);
+    public static Button driverStartButton = new JoystickButton(driver, 8);
 
-    private static Button driverRightJoystickButton = new JoystickButton(driver, 10);
-    private static Button driverLeftJoystickButton = new JoystickButton(driver, 9);
+    public static Button driverRightJoystickButton = new JoystickButton(driver, 10);
+    public static Button driverLeftJoystickButton = new JoystickButton(driver, 9);
 
-    private static Button driverDpadUp = new DPadButton(driver, 0, DPadAxis.UP);
-    private static Button driverDpadDown = new DPadButton(driver, 0, DPadAxis.DOWN);
-    private static Button driverDpadLeft = new DPadButton(driver, 0, DPadAxis.LEFT);
-    private static Button driverDpadRight = new DPadButton(driver, 0, DPadAxis.RIGHT);
+    public static Button driverDpadUp = new DPadButton(driver, 0, DPadAxis.UP);
+    public static Button driverDpadDown = new DPadButton(driver, 0, DPadAxis.DOWN);
+    public static Button driverDpadLeft = new DPadButton(driver, 0, DPadAxis.LEFT);
+    public static Button driverDpadRight = new DPadButton(driver, 0, DPadAxis.RIGHT);
 
     //copilot
     public static XboxController copilot = new XboxController(1);
 
-    private static Button copilotAButton = new JoystickButton(copilot, 1);
-    private static Button copilotBButton = new JoystickButton(copilot, 2);
-    private static Button copilotButton = new JoystickButton(copilot, 3);
-    private static Button copilotYButton = new JoystickButton(copilot, 4);
+    public static Button copilotAButton = new JoystickButton(copilot, 1);
+    public static Button copilotBButton = new JoystickButton(copilot, 2);
+    public static Button copilotXButton = new JoystickButton(copilot, 3);
+    public static Button copilotYButton = new JoystickButton(copilot, 4);
 
-    private static Button copilotRB = new JoystickButton(copilot, 6);
-    private static Button copilotLB = new JoystickButton(copilot, 5);
+    public static Button copilotRB = new JoystickButton(copilot, 6);
+    public static Button copilotLB = new JoystickButton(copilot, 5);
 
-    private static Button copilotBackButton = new JoystickButton(copilot, 7);
-    private static Button copilotStartButton = new JoystickButton(copilot, 8);
+    public static Button copilotBackButton = new JoystickButton(copilot, 7);
+    public static Button copilotStartButton = new JoystickButton(copilot, 8);
 
-    private static Button copilotRightJoystickButton = new JoystickButton(copilot, 10);
-    private static Button copilotLeftJoystickButton = new JoystickButton(copilot, 9);
+    public static Button copilotRightJoystickButton = new JoystickButton(copilot, 10);
+    public static Button copilotLeftJoystickButton = new JoystickButton(copilot, 9);
 
-    private static Button copilotDpadUp = new DPadButton(copilot, 0, DPadAxis.UP);
-    private static Button copilotDpadDown = new DPadButton(copilot, 0, DPadAxis.DOWN);
-    private static Button copilotDpadLeft = new DPadButton(copilot, 0, DPadAxis.LEFT);
-    private static Button copilotDpadRight = new DPadButton(copilot, 0, DPadAxis.RIGHT);
+    public static Button copilotDpadUp = new DPadButton(copilot, 0, DPadAxis.UP);
+    public static Button copilotDpadDown = new DPadButton(copilot, 0, DPadAxis.DOWN);
+    public static Button copilotDpadLeft = new DPadButton(copilot, 0, DPadAxis.LEFT);
+    public static Button copilotDpadRight = new DPadButton(copilot, 0, DPadAxis.RIGHT);
 
     public enum Axis {
         X,
@@ -90,7 +90,9 @@ public class OI {
         copilotAButton.whenReleased(new BunnyArmUp());
         copilotBButton.whenPressed(new CloseClaw());
         copilotBButton.whenReleased(new OpenClaw());
-        driverAButton.whenPressed(new MoveArmToPosition(1000));
+        copilotXButton.whenPressed(new MoveArmToPosition(125));
+//        copilotDpadUp.whenPressed(new MoveArmToPosition(0));
+//        copilotDpadDown.whenPressed(new MoveArmToPosition(Tuning.ARM_BIN_POSITION));
 //        Command grabBinCommand = new GrabBinSequence();
 //        driverXButton.whenPressed(grabBinCommand);
 //        driverBButton.cancelWhenPressed(grabBinCommand);
