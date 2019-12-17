@@ -86,11 +86,12 @@ public class OI {
     public static void init() {
         System.out.println("Initializing OI...");
 
-        copilotAButton.whenPressed(new BunnyArmDown());
-        copilotAButton.whenReleased(new BunnyArmUp());
-        copilotBButton.whenPressed(new CloseClaw());
-        copilotBButton.whenReleased(new OpenClaw());
-        copilotXButton.whenPressed(new MoveArmToPosition(125));
+//        copilotAButton.whenPressed(new BunnyArmDown());
+//        copilotAButton.whenReleased(new BunnyArmUp());
+//        copilotBButton.whenPressed(new CloseClaw());
+//        copilotBButton.whenReleased(new OpenClaw());
+        copilotXButton.whenPressed(new GrabBinSequence());
+//        copilotYButton.whenPressed(new MoveArmToPosition(115));
 //        copilotDpadUp.whenPressed(new MoveArmToPosition(0));
 //        copilotDpadDown.whenPressed(new MoveArmToPosition(Tuning.ARM_BIN_POSITION));
 //        Command grabBinCommand = new GrabBinSequence();

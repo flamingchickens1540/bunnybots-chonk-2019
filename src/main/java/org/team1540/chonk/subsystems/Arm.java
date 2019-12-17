@@ -13,14 +13,19 @@ public class Arm extends Subsystem {
     protected void initDefaultCommand() {}
 
     public void setPosition(double position) {
-        Hardware.arm.set(ControlMode.Position, position * Tuning.ARM_TICKS_PER_DEGREE);
-//        Hardware.arm.set(ControlMode.MotionMagic, position * Tuning.ARM_TICKS_PER_DEGREE,  DemandType.ArbitraryFeedForward, Tuning.ARM_COSINE_FEED_FORWARD_CONSTANT * Math.cos(Math.toRadians(getPosition())));
+//        Hardware.arm.set(ControlMode.Position, position * Tuning.ARM_TICKS_PER_DEGREE);
+        Hardware.arm.set(ControlMode.MotionMagic, position * Tuning.ARM_TICKS_PER_DEGREE,  DemandType.ArbitraryFeedForward, Tuning.ARM_COSINE_FEED_FORWARD_CONSTANT * Math.cos(Math.toRadians(getPosition())));
+    }
+
+    public void set(double throttle) {
+        Hardware.arm.set(ControlMode.PercentOutput, throttle);
     }
 
     @Override
     public void periodic() {
         SmartDashboard.putNumber("arm/encoder", getPosition());
         SmartDashboard.putNumber("arm/velocity", getVelocity());
+        SmartDashboard.putNumber("arm/throttle", Hardware.arm.getMotorOutputPercent());
         SmartDashboard.putBoolean("arm/limitswitch", !Hardware.armLimitSwitch.get());
 //        System.out.println(Hardware.armLimitSwitch.get());
     }

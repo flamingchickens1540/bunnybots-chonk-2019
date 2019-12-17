@@ -1,6 +1,7 @@
 package org.team1540.chonk;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -35,6 +36,7 @@ public class Robot extends TimedRobot {
         SmartDashboard.putNumber("arm/p", Tuning.ARM_P);
         SmartDashboard.putNumber("arm/i", Tuning.ARM_I);
         SmartDashboard.putNumber("arm/d", Tuning.ARM_D);
+        SmartDashboard.putNumber("arm/F", Tuning.ARM_F);
 
         SmartDashboard.putNumber("drive/limelightp", Tuning.LIMELIGHT_P);
         SmartDashboard.putNumber("drive/limelighti", Tuning.LIMELIGHT_I);
@@ -45,13 +47,19 @@ public class Robot extends TimedRobot {
     public void teleopInit() {
         System.out.println("Teleop Initializing...");
         Hardware.arm.set(ControlMode.PercentOutput, 0);
-//        Hardware.arm.setSelectedSensorPosition(Tuning.ARM_ZERO_POSITION);
+        if (!Hardware.armLimitSwitch.get()) {
+            Hardware.arm.setSelectedSensorPosition(Tuning.ARM_ZERO_POSITION);
+        }
         Hardware.setArmPID();
     }
 
     @Override
     public void teleopPeriodic() {
-        Hardware.arm.set(ControlMode.PercentOutput, OI.getJoystick(OI.copilot, GenericHID.Hand.kLeft, OI.Axis.Y));
+//        Hardware.arm.set(ControlMode.PercentOutput,
+//            OI.getJoystick(OI.copilot, GenericHID.Hand.kLeft, OI.Axis.Y),
+//            DemandType.ArbitraryFeedForward,
+//            Tuning.ARM_COSINE_FEED_FORWARD_CONSTANT * Math.cos(Math.toRadians(arm.getPosition())));
+//        SmartDashboard.putNumber("arm/joythrot",  OI.getJoystick(OI.copilot, GenericHID.Hand.kLeft, OI.Axis.Y));
     }
 
     @Override

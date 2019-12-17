@@ -10,16 +10,17 @@ import org.team1540.chonk.utils.WaitUntilCommand;
 
 public class GrabBinSequence extends CommandGroup {
     public GrabBinSequence() {
+        addParallel(new OpenClaw());
         addSequential(new MoveArmToPosition(Tuning.ARM_BIN_POSITION));
-        addSequential(new OpenClaw());
 //        addSequential(new WaitForUltrasonicOrOverride());
         addSequential(new WaitUntilCommand(() -> {
-            boolean ultrasonicTriggered = Math.abs(Hardware.frontUltrasonic.getValue() - Tuning.FRONT_ULTRASONIC_BIN_DISTANCE) <= Tuning.FRONT_ULTRASONIC_THRESHOLD;
+//            boolean ultrasonicTriggered = Math.abs(Hardware.frontUltrasonic.getValue() - Tuning.FRONT_ULTRASONIC_BIN_DISTANCE) <= Tuning.FRONT_ULTRASONIC_THRESHOLD;
+            boolean ultrasonicTriggered = false;
             boolean overridePressed = OI.getBinOverrideButtonPressed();
             return ultrasonicTriggered || overridePressed;
         }));
         addSequential(new CloseClaw());
-        addSequential(new MoveArmToPosition(0));
+        addSequential(new MoveArmToPosition(Tuning.ARM_DUMP_POSITION));
         addSequential(new WaitCommand(Tuning.DUMP_BIN_WAIT_TIME));
         addParallel(new CommandGroup() {
             {
@@ -27,6 +28,6 @@ public class GrabBinSequence extends CommandGroup {
                 addSequential(new OpenClaw());
             }
         });
-        addSequential(new MoveArmToPosition(Tuning.ARM_BIN_POSITION));
+        addSequential(new MoveArmToPosition(Tuning.ARM_AFTER_BIN_PICKUP_POSITION));
     }
 }

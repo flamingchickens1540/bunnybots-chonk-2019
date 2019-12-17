@@ -82,8 +82,10 @@ public class Hardware {
         arm.configFactoryDefault();
         arm.setInverted(true);
         arm.setSensorPhase(true);
+        arm.setBrake(false);
 //        arm.configPeakOutputForward(.5);
         arm.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder);
+        setArmPID();
 
         armLimitSwitch = new DigitalInput(RobotMap.ARM_LIMIT_SWITCH);
         armLimitSwitch.requestInterrupts(new InterruptHandlerFunction<>() {
@@ -140,12 +142,14 @@ public class Hardware {
         arm.config_kP(0, SmartDashboard.getNumber("arm/p", Tuning.ARM_P));
         arm.config_kI(0, SmartDashboard.getNumber("arm/i", Tuning.ARM_I));
         arm.config_kD(0, SmartDashboard.getNumber("arm/d", Tuning.ARM_D));
+        arm.config_kF(0, SmartDashboard.getNumber("arm/f", Tuning.ARM_F));
+        arm.configMotionCruiseVelocity(Tuning.ARM_CRUISE_VAL);
+        arm.configMotionAcceleration(Tuning.ARM_ACCEL);
 
 //        arm.config_kP(0, Tuning.ARM_P);
 //        arm.config_kI(0, Tuning.ARM_I);
 //        arm.config_kD(0, Tuning.ARM_D);
 
-//        arm.config_kF(0, Tuning.ARM_F);
 //        arm.configMotionCruiseVelocity(Tuning.ARM_CRUISE_VAL);
 //        arm.configMotionAcceleration(Tuning.ARM_ACCEL);
     }
