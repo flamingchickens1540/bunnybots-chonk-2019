@@ -7,10 +7,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1540.chonk.Hardware;
 import org.team1540.chonk.Tuning;
+import org.team1540.chonk.commands.arm.JoystickArmControl;
 
 public class Arm extends Subsystem {
     @Override
-    protected void initDefaultCommand() {}
+    protected void initDefaultCommand() {
+        setDefaultCommand(new JoystickArmControl());
+    }
 
     public void setPosition(double position) {
 //        Hardware.arm.set(ControlMode.Position, position * Tuning.ARM_TICKS_PER_DEGREE);

@@ -12,9 +12,9 @@ import org.team1540.rooster.util.SimpleCommand;
 public class DriveTrain extends Subsystem {
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new TankDrive());
+//        setDefaultCommand(new TankDrive());
 //        setDefaultCommand(new ArcadeDrive());
-//        setDefaultCommand(new ModifiedArcadeDrive());
+        setDefaultCommand(new ModifiedArcadeDrive());
 //        setDefaultCommand(new PointDrive());
 //        setDefaultCommand(new SimpleCommand("", () -> Robot.drivetrain.setThrottle(1, 1), Robot.drivetrain));
     }

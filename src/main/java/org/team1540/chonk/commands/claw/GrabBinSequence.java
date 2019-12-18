@@ -9,6 +9,11 @@ import org.team1540.chonk.commands.arm.MoveArmToPosition;
 import org.team1540.chonk.utils.WaitUntilCommand;
 
 public class GrabBinSequence extends CommandGroup {
+    @Override
+    protected void initialize() {
+        System.out.println("Starting grab bin sequence");
+    }
+
     public GrabBinSequence() {
         addParallel(new OpenClaw());
         addSequential(new MoveArmToPosition(Tuning.ARM_BIN_POSITION));
@@ -29,5 +34,10 @@ public class GrabBinSequence extends CommandGroup {
             }
         });
         addSequential(new MoveArmToPosition(Tuning.ARM_AFTER_BIN_PICKUP_POSITION));
+    }
+
+    @Override
+    protected void end() {
+        System.out.println("Grab bin sequence finished");
     }
 }

@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
+import org.team1540.chonk.commands.arm.JoystickArmControl;
 import org.team1540.chonk.commands.arm.MoveArmToPosition;
 import org.team1540.chonk.commands.bunnyarm.BunnyArmDown;
 import org.team1540.chonk.commands.bunnyarm.BunnyArmUp;
@@ -12,6 +13,7 @@ import org.team1540.chonk.commands.claw.CloseClaw;
 import org.team1540.chonk.commands.claw.GrabBinSequence;
 import org.team1540.chonk.commands.claw.OpenClaw;
 import org.team1540.rooster.Utilities;
+import org.team1540.rooster.triggers.AxisButton;
 import org.team1540.rooster.triggers.DPadAxis;
 import org.team1540.rooster.triggers.DPadButton;
 import org.team1540.rooster.util.SimpleCommand;
@@ -50,6 +52,9 @@ public class OI {
     public static Button copilotRB = new JoystickButton(copilot, 6);
     public static Button copilotLB = new JoystickButton(copilot, 5);
 
+    public static AxisButton copilotLeftTriggerPressed = new AxisButton(copilot, 0.5, 2);
+    public static AxisButton copilotRightTriggerPressed = new AxisButton(copilot, 0.5, 3);
+
     public static Button copilotBackButton = new JoystickButton(copilot, 7);
     public static Button copilotStartButton = new JoystickButton(copilot, 8);
 
@@ -60,6 +65,9 @@ public class OI {
     public static Button copilotDpadDown = new DPadButton(copilot, 0, DPadAxis.DOWN);
     public static Button copilotDpadLeft = new DPadButton(copilot, 0, DPadAxis.LEFT);
     public static Button copilotDpadRight = new DPadButton(copilot, 0, DPadAxis.RIGHT);
+
+    public static AxisButton copilotLeftJoystickMovedPositiveY = new AxisButton(copilot, 0.1, 1);
+    public static AxisButton copilotLeftJoystickMovedNegativeY = new AxisButton(copilot, -0.1, 1);
 
     public enum Axis {
         X,
@@ -79,23 +87,20 @@ public class OI {
     }
 
     public static boolean getBinOverrideButtonPressed() {
-        return copilotAButton.get();
+        return copilotBButton.get();
     }
 
     //bindings
     public static void init() {
         System.out.println("Initializing OI...");
 
-//        copilotAButton.whenPressed(new BunnyArmDown());
-//        copilotAButton.whenReleased(new BunnyArmUp());
-//        copilotBButton.whenPressed(new CloseClaw());
-//        copilotBButton.whenReleased(new OpenClaw());
+        copilotRB.whenPressed(new CloseClaw());
+        copilotRightTriggerPressed.whenPressed(new OpenClaw());
+        copilotLeftJoystickMovedPositiveY.whileHeld(new JoystickArmControl());
+        copilotLeftJoystickMovedNegativeY.whileHeld(new JoystickArmControl());
         copilotXButton.whenPressed(new GrabBinSequence());
-//        copilotYButton.whenPressed(new MoveArmToPosition(115));
-//        copilotDpadUp.whenPressed(new MoveArmToPosition(0));
-//        copilotDpadDown.whenPressed(new MoveArmToPosition(Tuning.ARM_BIN_POSITION));
-//        Command grabBinCommand = new GrabBinSequence();
-//        driverXButton.whenPressed(grabBinCommand);
-//        driverBButton.cancelWhenPressed(grabBinCommand);
+        copilotYButton.whenPressed(new SimpleCommand("ZeroNavX", Hardware.navx::zeroYaw));
+        copilotDpadDown.whenPressed(new BunnyArmDown());
+        copilotDpadUp.whenPressed(new BunnyArmUp());
     }
 }
