@@ -66,8 +66,8 @@ public class OI {
     public static Button copilotDpadLeft = new DPadButton(copilot, 0, DPadAxis.LEFT);
     public static Button copilotDpadRight = new DPadButton(copilot, 0, DPadAxis.RIGHT);
 
-    public static AxisButton copilotLeftJoystickMovedPositiveY = new AxisButton(copilot, 0.1, 1);
-    public static AxisButton copilotLeftJoystickMovedNegativeY = new AxisButton(copilot, -0.1, 1);
+    public static AxisButton copilotLeftJoystickMovedPositiveY = new AxisButton(copilot, 0.2, 1);
+    public static AxisButton copilotLeftJoystickMovedNegativeY = new AxisButton(copilot, -0.2, 1);
 
     public enum Axis {
         X,
