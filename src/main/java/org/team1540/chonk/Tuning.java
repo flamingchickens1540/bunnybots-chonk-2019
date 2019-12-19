@@ -18,6 +18,7 @@ public class Tuning {
     public static final double ARM_D = 0;
     public static final double ARM_F = 1.176;
     public static final double ARM_COSINE_FEED_FORWARD_CONSTANT = 0.1;
+    public static final double ARM_JOYSTICK_SCALE = 0.25;
     public static final int ARM_CRUISE_VAL = 750;
     public static final int ARM_ACCEL = 2000;
     public static final double ARM_TICKS_PER_DEGREE = 22.755555;

@@ -21,7 +21,7 @@ public class Arm extends Subsystem {
     }
 
     public void set(double throttle) {
-        Hardware.arm.set(ControlMode.PercentOutput, throttle);
+        Hardware.arm.set(ControlMode.PercentOutput, throttle + (Tuning.ARM_COSINE_FEED_FORWARD_CONSTANT * Math.cos(Math.toRadians(getPosition()))));
     }
 
     @Override
