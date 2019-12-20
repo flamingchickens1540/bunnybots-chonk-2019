@@ -99,7 +99,7 @@ public class OI {
         copilotLeftJoystickMovedPositiveY.whileHeld(new JoystickArmControl());
         copilotLeftJoystickMovedNegativeY.whileHeld(new JoystickArmControl());
         copilotXButton.whenPressed(new GrabBinSequence());
-        copilotYButton.whenPressed(new SimpleCommand("ZeroNavX", Hardware.navx::zeroYaw));
+        driverYButton.whenPressed(new SimpleCommand("ZeroNavX", Hardware.navx::zeroYaw));
         copilotDpadDown.whenPressed(new BunnyArmDown());
         copilotDpadUp.whenPressed(new BunnyArmUp());
     }
