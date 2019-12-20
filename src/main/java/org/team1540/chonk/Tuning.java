@@ -2,9 +2,9 @@ package org.team1540.chonk;
 
 public class Tuning {
 
-    public static double POINT_DRIVE_P = 0.4;
+    public static double POINT_DRIVE_P = 2;
     public static double POINT_DRIVE_I = 0;
-    public static double POINT_DRIVE_D = 0;
+    public static double POINT_DRIVE_D = 1;
 
     public static double LIMELIGHT_P = 0.01;
     public static double LIMELIGHT_I = 0;

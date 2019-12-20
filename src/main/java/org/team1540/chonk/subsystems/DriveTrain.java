@@ -15,8 +15,8 @@ public class DriveTrain extends Subsystem {
     protected void initDefaultCommand() {
 //        setDefaultCommand(new TankDrive());
 //        setDefaultCommand(new ArcadeDrive());
-        setDefaultCommand(new ModifiedArcadeDrive());
-//        setDefaultCommand(new PointDrive());
+//        setDefaultCommand(new ModifiedArcadeDrive());
+        setDefaultCommand(new PointDrive());
 //        setDefaultCommand(new SimpleCommand("", () -> Robot.drivetrain.setThrottle(1, 1), Robot.drivetrain));
     }
 
