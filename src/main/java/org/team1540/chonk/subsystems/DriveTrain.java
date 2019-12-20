@@ -3,6 +3,7 @@ package org.team1540.chonk.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.team1540.chonk.Hardware;
 import org.team1540.chonk.Robot;
+import org.team1540.chonk.Tuning;
 import org.team1540.chonk.commands.drivetrain.ArcadeDrive;
 import org.team1540.chonk.commands.drivetrain.ModifiedArcadeDrive;
 import org.team1540.chonk.commands.drivetrain.PointDrive;
@@ -20,7 +21,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void setThrottle(double left, double right) {
-        Hardware.driveLeftA.set(left);
-        Hardware.driveRightA.set(-right);
+        Hardware.driveLeftA.set(left * Tuning.DRIVE_KV + (left == 0 ? 0 : Math.copySign(Tuning.DRIVE_KS, left)));
+        Hardware.driveRightA.set(-right * Tuning.DRIVE_KV - (right == 0 ? 0 : Math.copySign(Tuning.DRIVE_KS, right)));
     }
 }

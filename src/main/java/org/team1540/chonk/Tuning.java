@@ -33,4 +33,7 @@ public class Tuning {
     public static final double CLAW_MOVE_TIME = 0.05;
     public static final double FRONT_ULTRASONIC_BIN_DISTANCE = 1;
     public static final double FRONT_ULTRASONIC_THRESHOLD = 0.25;
+
+    public static final double DRIVE_KV = 0.917;
+    public static final double DRIVE_KS = .083;
 }
