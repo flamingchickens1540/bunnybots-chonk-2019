@@ -33,7 +33,7 @@ public class ModifiedArcadeDrive extends Command {
 
     @Override
     protected void execute() {
-        double triggerThrottle = OI.getTriggerThrottle();
+        double triggerThrottle = OI.getTriggerThrottle(OI.driver);
         double leftY = OI.getJoystick(OI.driver, GenericHID.Hand.kLeft, OI.Axis.Y);
         double rightX = OI.getJoystick(OI.driver, GenericHID.Hand.kRight, OI.Axis.X);
         double throttleLeft = leftY + (leftY * negativePart(rightX)) + triggerThrottle;

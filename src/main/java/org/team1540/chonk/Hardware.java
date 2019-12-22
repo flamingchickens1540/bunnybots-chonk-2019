@@ -4,10 +4,13 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1540.rooster.wrappers.ChickenTalon;
-import org.team1540.rooster.wrappers.ChickenVictor;
 import org.team1540.rooster.wrappers.RevBlinken;
 
 public class Hardware {
@@ -23,6 +26,8 @@ public class Hardware {
     public static Solenoid claw;
 
     public static Solenoid bunnyArm;
+
+    public static Servo bunnyDoor;
 
     public static Compressor compressor;
 
@@ -41,11 +46,12 @@ public class Hardware {
         initArm();
         initClaw();
         initBunnyArm();
-//        initUltrasonic();
+        initBunnyDoor();
+        initUltrasonic();
         initCompressor();
         initNavX();
 //        initLEDs();
-//        initLimelight();
+        initLimelight();
 
         System.out.println("Robot Hardware Initialized");
     }
@@ -88,15 +94,15 @@ public class Hardware {
         setArmPID();
 
         armLimitSwitch = new DigitalInput(RobotMap.ARM_LIMIT_SWITCH);
-        armLimitSwitch.requestInterrupts(new InterruptHandlerFunction<>() {
-            @Override
-            public void interruptFired(int i, Object o) {
-                System.out.println("Arm limit switch hit");
-                Hardware.arm.setSelectedSensorPosition(Tuning.ARM_ZERO_POSITION);
-            }
-        });
-        armLimitSwitch.enableInterrupts();
-        armLimitSwitch.setUpSourceEdge(false, true);
+//        armLimitSwitch.requestInterrupts(new InterruptHandlerFunction<>() {
+//            @Override
+//            public void interruptFired(int i, Object o) {
+//                System.out.println("Arm limit switch hit");
+//                Hardware.arm.setSelectedSensorPosition(Tuning.ARM_ZERO_POSITION);
+//            }
+//        });
+//        armLimitSwitch.setUpSourceEdge(false, true);
+//        armLimitSwitch.enableInterrupts();
 
         System.out.println("initialized arm limit switch in port " + RobotMap.ARM_LIMIT_SWITCH);
     }
@@ -107,6 +113,12 @@ public class Hardware {
 
     static void initBunnyArm() {
         bunnyArm = new Solenoid(RobotMap.BUNNY_ARM);
+    }
+
+    static void initBunnyDoor() {
+        bunnyDoor = new Servo(RobotMap.BUNNY_DOOR);
+
+        bunnyDoor.setBounds(2.250, 0, 1.505, 0, 0.76);
     }
 
     static void initUltrasonic() {
@@ -133,7 +145,7 @@ public class Hardware {
     static void initLimelight() {
         System.out.println("Initializing Limelight");
 
-        limelight = NetworkTableInstance.getDefault().getTable("limelight-a");
+        limelight = NetworkTableInstance.getDefault().getTable("limelight");
     }
 
     static void setArmPID() {

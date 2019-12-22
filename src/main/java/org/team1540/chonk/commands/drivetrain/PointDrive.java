@@ -1,16 +1,16 @@
 package org.team1540.chonk.commands.drivetrain;
 
+import static org.team1540.chonk.utils.SignedAngleError.signedAngleError;
+
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1540.chonk.Hardware;
 import org.team1540.chonk.OI;
 import org.team1540.chonk.Robot;
 import org.team1540.chonk.Tuning;
+import org.team1540.chonk.utils.ControlUtils;
 import org.team1540.rooster.Utilities;
-
-import static org.team1540.chonk.utils.SignedAngleError.signedAngleError;
 
 public class PointDrive extends PIDCommand {
 
@@ -34,8 +34,8 @@ public class PointDrive extends PIDCommand {
 
     @Override
     protected double returnPIDInput() {
-        double destAngle = -Math.atan2(OI.getJoystick(OI.driver, GenericHID.Hand.kRight, OI.Axis.Y),
-            OI.getJoystick(OI.driver, GenericHID.Hand.kRight, OI.Axis.X)) - (Math.PI / 2);
+        double destAngle = Math.atan2(-OI.getJoystick(OI.driver, GenericHID.Hand.kRight, OI.Axis.Y),
+            OI.getJoystick(OI.driver, GenericHID.Hand.kRight, OI.Axis.X)) + (Math.PI / 2);
         if ((Utilities
             .processDeadzone(OI.getJoystick(OI.driver, GenericHID.Hand.kRight, OI.Axis.X), .5) == 0)
             && (Utilities
@@ -60,6 +60,7 @@ public class PointDrive extends PIDCommand {
     @Override
     protected void usePIDOutput(double output) {
         double leftY = OI.getJoystick(OI.driver, GenericHID.Hand.kLeft, OI.Axis.Y);
+        output = ControlUtils.allVelocityConstraints(output, 0.6, 0, 0.1);
         Robot.driveTrain.setThrottle(-output + leftY, output + leftY);
     }
 }

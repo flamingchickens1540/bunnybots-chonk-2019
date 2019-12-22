@@ -5,8 +5,6 @@ import org.team1540.chonk.Hardware;
 import org.team1540.chonk.Robot;
 import org.team1540.chonk.Tuning;
 
-import static org.team1540.chonk.utils.SignedAngleError.signedAngleError;
-
 public class MoveForwardLineUp extends PIDCommand  {
 
     private double maxDistance;
@@ -30,18 +28,20 @@ public class MoveForwardLineUp extends PIDCommand  {
     @Override
     protected void end() {
         System.out.println("Finished MoveForwardLineUp");
+        Robot.driveTrain.setThrottle(0, 0);
     }
 
     @Override
     protected double returnPIDInput() {
-        double forwardError = signedAngleError(startingRadians, -Math.toRadians(Hardware.navx.getYaw()));
-        double limelightError = Math.toRadians(Hardware.limelight.getEntry("tx").getDouble(0));
-        return forwardError + limelightError;
+//        double forwardError = signedAngleError(startingRadians, -Math.toRadians(Hardware.navx.getYaw()));
+//        double limelightError = Math.toRadians(Hardware.limelight.getEntry("tx").getDouble(0));
+        return Hardware.limelight.getEntry("tx").getDouble(0);
     }
 
     @Override
     protected void usePIDOutput(double output) {
-        Robot.driveTrain.setThrottle(-output, output);
+        Robot.driveTrain
+            .setThrottle(-output + Tuning.AUTO_FWD_SPEED, output + Tuning.AUTO_FWD_SPEED);
     }
 
     @Override
@@ -50,8 +50,9 @@ public class MoveForwardLineUp extends PIDCommand  {
             System.out.println("Finished MoveForwardLineUp because over max distance");
             return true;
         }
-        double bottomAngle = 90 - Hardware.limelight.getEntry("ty").getDouble(0);
-        double dist = Math.tan(bottomAngle) * Tuning.LIMELIGHT_HEIGHT;
-        return dist <= Tuning.LIMELIGHT_FORWARD_TOLERANCE;
+//        double bottomAngle = 90 - Hardware.limelight.getEntry("ty").getDouble(0);
+//        double dist = Math.tan(bottomAngle) * Tuning.LIMELIGHT_HEIGHT;
+        return Hardware.limelight.getEntry("ty").getDouble(0) < -12.5;
+//        return Hardware.frontUltrasonic.getVoltage() < Tuning.FRONT_ULTRASONIC_BIN_DISTANCE;
     }
 }

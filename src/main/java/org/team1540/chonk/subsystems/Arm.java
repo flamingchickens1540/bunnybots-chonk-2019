@@ -2,17 +2,15 @@ package org.team1540.chonk.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
-import edu.wpi.first.wpilibj.InterruptHandlerFunction;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.team1540.chonk.Hardware;
 import org.team1540.chonk.Tuning;
-import org.team1540.chonk.commands.arm.JoystickArmControl;
 
 public class Arm extends Subsystem {
     @Override
     protected void initDefaultCommand() {
-        setDefaultCommand(new JoystickArmControl());
+//        setDefaultCommand(new JoystickArmControl());
     }
 
     public void setPosition(double position) {
@@ -31,6 +29,10 @@ public class Arm extends Subsystem {
         SmartDashboard.putNumber("arm/throttle", Hardware.arm.getMotorOutputPercent());
         SmartDashboard.putBoolean("arm/limitswitch", !Hardware.armLimitSwitch.get());
 //        System.out.println(Hardware.armLimitSwitch.get());
+        if (!Hardware.armLimitSwitch.get()) {
+            System.out.println("Arm limit switch hit");
+            Hardware.arm.setSelectedSensorPosition(Tuning.ARM_ZERO_POSITION);
+        }
     }
 
     public double getPosition() {

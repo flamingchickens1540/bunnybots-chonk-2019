@@ -4,14 +4,14 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
 import org.team1540.chonk.commands.arm.JoystickArmControl;
 import org.team1540.chonk.commands.arm.MoveArmToPosition;
-import org.team1540.chonk.commands.bunnyarm.BunnyArmDown;
-import org.team1540.chonk.commands.bunnyarm.BunnyArmUp;
+import org.team1540.chonk.commands.bunnyarm.GrabBunnies;
+import org.team1540.chonk.commands.bunnyarm.OpenBunnyDoor;
 import org.team1540.chonk.commands.claw.CloseClaw;
 import org.team1540.chonk.commands.claw.GrabBinSequence;
 import org.team1540.chonk.commands.claw.OpenClaw;
+import org.team1540.chonk.commands.drivetrain.MoveForwardLineUp;
 import org.team1540.rooster.Utilities;
 import org.team1540.rooster.triggers.AxisButton;
 import org.team1540.rooster.triggers.DPadAxis;
@@ -41,6 +41,8 @@ public class OI {
     public static Button driverDpadLeft = new DPadButton(driver, 0, DPadAxis.LEFT);
     public static Button driverDpadRight = new DPadButton(driver, 0, DPadAxis.RIGHT);
 
+    public static AxisButton driverLeftTriggerMoved = new AxisButton(driver, 0.2, 2);
+    public static AxisButton driverRightTriggerMoved = new AxisButton(driver, 0.2, 3);
     //copilot
     public static XboxController copilot = new XboxController(1);
 
@@ -69,9 +71,10 @@ public class OI {
     public static AxisButton copilotLeftJoystickMovedPositiveY = new AxisButton(copilot, 0.2, 1);
     public static AxisButton copilotLeftJoystickMovedNegativeY = new AxisButton(copilot, -0.2, 1);
 
+
     public enum Axis {
         X,
-        Y
+        Y;
     }
 
     public static double getJoystick(XboxController controller, GenericHID.Hand hand, Axis axis) {
@@ -82,12 +85,19 @@ public class OI {
         }
     }
 
-    public static double getTriggerThrottle() {
-        return Utilities.scale(Utilities.processDeadzone(OI.driver.getTriggerAxis(GenericHID.Hand.kRight) - OI.driver.getTriggerAxis(GenericHID.Hand.kLeft), .1), 2);
+    public static double getTriggerThrottle(XboxController controller) {
+        return Utilities.scale(Utilities.processDeadzone(
+            controller.getTriggerAxis(GenericHID.Hand.kRight) - controller
+                .getTriggerAxis(GenericHID.Hand.kLeft), .1), 2);
     }
+
 
     public static boolean getBinOverrideButtonPressed() {
         return copilotBButton.get();
+    }
+
+    public static boolean getArmSafetyOverride() {
+        return driverRB.get();
     }
 
     //bindings
@@ -98,9 +108,18 @@ public class OI {
         copilotRightTriggerPressed.whenPressed(new OpenClaw());
         copilotLeftJoystickMovedPositiveY.whileHeld(new JoystickArmControl());
         copilotLeftJoystickMovedNegativeY.whileHeld(new JoystickArmControl());
+        driverLeftTriggerMoved.whileHeld(new JoystickArmControl());
+        driverRightTriggerMoved.whileHeld(new JoystickArmControl());
         copilotXButton.whenPressed(new GrabBinSequence());
-        driverYButton.whenPressed(new SimpleCommand("ZeroNavX", Hardware.navx::zeroYaw));
-        copilotDpadDown.whenPressed(new BunnyArmDown());
-        copilotDpadUp.whenPressed(new BunnyArmUp());
+        copilotDpadUp.whenPressed(new MoveArmToPosition(Tuning.ARM_DUMP_POSITION));
+        copilotDpadDown.whenPressed(new MoveArmToPosition(Tuning.ARM_BIN_POSITION));
+        SimpleCommand zeroNavX = new SimpleCommand("ZeroNavX", Hardware.navx::zeroYaw);
+        zeroNavX.setRunWhenDisabled(true);
+        driverYButton.whenPressed(zeroNavX);
+//        copilotDpadDown.whenPressed(new BunnyArmDown());
+//        copilotDpadUp.whenPressed(new BunnyArmUp());
+        copilotAButton.whenPressed(new OpenBunnyDoor());
+        copilotYButton.whenPressed(new GrabBunnies());
+        driverAButton.whileHeld(new MoveForwardLineUp(315_000));
     }
 }

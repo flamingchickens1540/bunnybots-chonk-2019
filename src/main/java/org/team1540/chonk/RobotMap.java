@@ -16,6 +16,8 @@ public class RobotMap {
 
     public static final int BUNNY_ARM = 0;
 
+    public static final int BUNNY_DOOR = 9;
+
     public static final int FRONT_ULTRASONIC = 0;
 
     public static final SPI.Port NAVX = SPI.Port.kMXP;
